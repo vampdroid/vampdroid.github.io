@@ -1,0 +1,15 @@
+---
+const { notice } = Astro.props;
+---
+<div class="notice">
+	{notice}
+</div>
+<style>
+	.notice {
+		border-radius: 12px;
+		background-color: var(--green-accent);
+		color: var(--dark-font);
+		padding: 16px;
+		margin-bottom: 24px;
+	}
+</style>

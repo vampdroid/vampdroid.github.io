@@ -1,0 +1,47 @@
+---
+import Image from 'astro/components/Image.astro';
+import YoutubeImagePath from '/src/assets/images/YT.png';
+const { title, description } = Astro.props;
+---
+<div class="youtube-channel">
+	<a
+		href="https://www.youtube.com/@howsthecode"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+	<div class="youtube-channel__logo">
+		<Image
+			class="youtube-channel__image"
+			src={ YoutubeImagePath }
+			alt="Youtube Channel"
+		/>
+		<strong class="youtube-channel__label">Youtube</strong>
+	</div>
+	<h3 class="youtube-channel__title">{ title }</h3>
+	<p>{ description }</p>
+	</a>
+</div>
+
+
+<style>
+	.youtube-channel a {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.youtube-channel__label {
+		display: block;
+	}
+
+	.youtube-channel__title {
+		margin-bottom: 0;
+	}
+
+	.youtube-channel__image {
+		width: 60px;
+		height: auto;
+		border-radius: 12px;
+		margin-bottom: 16px;
+	}
+</style>

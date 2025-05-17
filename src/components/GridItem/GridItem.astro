@@ -1,0 +1,14 @@
+---
+const { name } = Astro.props;
+---
+<div class="grid-item" style={`grid-area: ${name}`}>
+  <slot />
+</div>
+
+<style>
+	.grid-item {
+		background-color: var(--dark-secondary);
+		border-radius: 12px;
+		padding: 24px;
+	}
+</style>
