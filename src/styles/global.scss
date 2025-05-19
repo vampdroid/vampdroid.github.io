@@ -4,15 +4,17 @@
 	--grid-area-desktop:
 		"p-info p-info p-info p-info yt-cnt yt-cnt"
 		"p-expn p-expn yt-chn yt-chn yt-cnt yt-cnt"
-		"p-expn p-expn nl-sub nl-sub bl-cnt bl-cnt"
-		"p-lkdn p-xcom p-inst p-bsky bl-cnt bl-cnt";
+		"p-expn p-expn ai-cht ai-cht bl-cnt bl-cnt"
+		"p-proj p-proj p-lkdn p-xcom bl-cnt bl-cnt"
+		"p-proj p-proj p-inst p-bsky bl-cnt bl-cnt";
 	--grid-area-mobile:
 		"p-info"
 		"p-expn"
 		"yt-chn"
+		"p-proj"
 		"yt-cnt"
 		"bl-cnt"
-		"nl-sub"
+		"ai-cht"
 		"p-lkdn"
 		"p-xcom"
 		"p-inst"
@@ -20,7 +22,9 @@
 	--grid-area-tablet:
 		"p-info p-info p-info p-info"
 		"p-expn p-expn yt-chn yt-chn"
-		"p-expn p-expn nl-sub nl-sub"
+		"p-expn p-expn ai-cht ai-cht"
+		"p-proj p-proj ai-cht ai-cht"
+		"p-proj p-proj bl-cnt bl-cnt"
 		"yt-cnt yt-cnt bl-cnt bl-cnt"
 		"yt-cnt yt-cnt bl-cnt bl-cnt"
 		"p-lkdn p-xcom p-inst p-bsky";
@@ -28,6 +32,8 @@
 	--dark-secondary: #141414;
 	--dark-accent: #212121;
 	--green-accent: #096B68;
+	--purple-accent: #5A2A84;
+	--orange-accent: #B34700;
 	--dark-font: #FFFFFF;
 	--dark-font-secondary: #BABABA;
 	--heading-font-family: 'Lato';
@@ -44,6 +50,21 @@
 	padding: 0;
 	margin: 0;
 }
+
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+	width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: #00000000; /* Light background */
+	border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background-color: var(--purple-accent);
+	border-radius: 12px;
+  }
 
 a {
 	text-decoration: none;

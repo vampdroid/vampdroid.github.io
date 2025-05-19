@@ -13,11 +13,11 @@ const { title, highlight, description, image } = Astro.props;
 </div>
 
 <style>
-
 	.profile {
 		display: flex;
 		align-items: center;
 		gap: var(--col-gutter);
+		background-color: var(--purple-accent);
 	}
 
 	.profile__image {
@@ -25,7 +25,6 @@ const { title, highlight, description, image } = Astro.props;
 		height: 100px;
 		width: auto;
 		border-radius: 50%;
-		margin-bottom: 16px;
 	}
 
 	@media screen and (min-width: 768px) {

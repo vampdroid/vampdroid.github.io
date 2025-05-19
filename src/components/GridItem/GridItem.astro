@@ -1,14 +1,31 @@
 ---
-const { name } = Astro.props;
----
-<div class="grid-item" style={`grid-area: ${name}`}>
-  <slot />
-</div>
+const { name, url } = Astro.props;
 
-<style>
+const tag = url ? 'a' : 'div';
+---
+{ url ? (
+	<a class="grid-item" style={`grid-area: ${name}`} href={url}>
+	  <slot />
+	</a>
+  ) : (
+	<div class="grid-item" style={`grid-area: ${name}`}>
+	  <slot />
+	</div>
+ ) }
+
+<style is:global>
+	a {
+		display: block;
+	}
+
 	.grid-item {
 		background-color: var(--dark-secondary);
 		border-radius: 12px;
-		padding: 24px;
 	}
+
+	.grid-item > * {
+		padding: 24px;
+		border-radius: 12px;
+	}
+
 </style>
