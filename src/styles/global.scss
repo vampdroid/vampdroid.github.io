@@ -40,6 +40,7 @@
 	--content-font-family: 'Arvo';
 	--row-gutter: 24px;
 	--col-gutter: 24px;
+	--content-font-size: clamp(14px, 1.8vw, 16px);;
 }
 
 
@@ -88,6 +89,13 @@ body {
 	color: var(--dark-font-secondary);
 	font-family: var(--content-font-family);
 	overflow-x: hidden;
+}
+
+button {
+	font-family: var(--heading-font-family);
+	color: var(--dark-font);
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 h1,
@@ -145,7 +153,7 @@ h6 {
 }
 
 p {
-	font-size: clamp(14px, 1.8vw, 16px);
+	font-size: var(--content-font-size);
 	line-height: 1.7;
 	margin-bottom: 14px;
 	font-weight: 400;

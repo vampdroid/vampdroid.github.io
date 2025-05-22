@@ -1,8 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
+import ChatBox from "../components/Chat/ChatBox.jsx";
+import Chats from "../components/Chat/Chats.jsx";
 
 ---
-<Layout highlight="true">
-	<h1>Chat</h1>
+<Layout highlight="true" title="Chat">
+	<div class="chat">
+		<Chats client:load />
+		<ChatBox client:load />
+	</div>
 </Layout>
+
+<style>
+	.chat {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		background-color: var(--color-background);
+
+		h1 {
+			text-align: center;
+		}
+	}
+</style>
