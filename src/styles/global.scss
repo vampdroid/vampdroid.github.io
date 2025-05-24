@@ -40,7 +40,8 @@
 	--content-font-family: 'Arvo';
 	--row-gutter: 24px;
 	--col-gutter: 24px;
-	--content-font-size: clamp(14px, 1.8vw, 16px);;
+	--content-font-size: clamp(14px, 1.8vw, 16px);
+	--button-font-size: clamp(16px, 1.8vw, 18px);
 }
 
 
@@ -96,6 +97,7 @@ button {
 	color: var(--dark-font);
 	text-transform: uppercase;
 	font-weight: 700;
+	font-size: var(--button-font-size);
 }
 
 h1,
@@ -152,8 +154,12 @@ h6 {
 	font-weight: 500;
 }
 
+input {
+	font-family: var(--content-font-family);
+	font-weight: 400;
+}
+
 p {
-	font-size: var(--content-font-size);
 	line-height: 1.7;
 	margin-bottom: 14px;
 	font-weight: 400;
