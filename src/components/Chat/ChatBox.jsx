@@ -13,7 +13,7 @@ const ChatBox = () => {
 
 	useEffect(() => {
 		async function getGeminiResponse(prompt) {
-			const res = await fetch('/api/chat', {
+			const res = await fetch('https://gemini-serverless.vercel.app/api/chat', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -26,14 +26,6 @@ const ChatBox = () => {
 		}
 
 		getGeminiResponse('Hello Gemini!');
-
-		async function fetchHello() {
-			const res = await fetch('/api/hello');
-			const data = await res.json();
-			console.log(data); // 👉 should log: { message: 'Hello from Astro API!' }
-		}
-
-		fetchHello();
 	}, []);
 
 	return (
