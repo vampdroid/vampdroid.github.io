@@ -4,22 +4,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Grid from "../components/Grid/Grid.astro";
 import GridItem from "../components/GridItem/GridItem.astro";
 import Profile from "../components/Profile/Profile.astro";
-import Notice from "../components/Notice/Notice.astro";
 import Experience from "../components/Experience/Experience.astro";
 
-import ProfileImagePath from "../assets/images/profile.jpeg";
+import ProfileImagePath from "../assets/images/profile.webp";
+import LinkedInProfilePath from "../assets/images/linkedin.png";
+import XImagePath from "../assets/images/x.png";
+import BlueSkyImagePath from "../assets/images/bluesky.png";
 import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
+import Social from "../components/Social/Social.astro";
+import ChatButton from "../components/Chat/ChatButton.astro";
 ---
 
 <Layout title={ SITE_TITLE }>
-	<Notice
-		notice="Work is in Progress!"
-	/>
 	<Grid>
 		<GridItem name="p-info">
 			<Profile
 				title="I'm Yash Kukreja"
-				description="I'm a content creator and software engineer who loves creating solutions!"
+				description="Software Engineer and Content Creator."
 				image={ ProfileImagePath }
 			/>
 		</GridItem>
@@ -44,7 +45,7 @@ import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 			/>
 		</GridItem>
 		<GridItem name="ai-cht" url="/chat">
-			<h3>Chat with me (AI Powered!)</h3>
+			<ChatButton />
 		</GridItem>
 		<GridItem name="bl-cnt">
 			<h3>Blog Content</h3>
@@ -53,16 +54,25 @@ import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 			<h3>Personal Project</h3>
 		</GridItem>
 		<GridItem name="p-lkdn">
-			<h3>LinkedIn Profile</h3>
+			<Social
+				link="https://www.linkedin.com/in/yash-kukreja/"
+				image={ LinkedInProfilePath }
+				text="Checkout my LinkedIn profile."
+			/>
 		</GridItem>
 		<GridItem name="p-xcom">
-			<h3>X Profile</h3>
-		</GridItem>
-		<GridItem name="p-inst">
-			<h3>Instagram Profile</h3>
+			<Social
+				link="https://x.com/yashskukreja"
+				image={ XImagePath }
+				text="Checkout my X profile."
+			/>
 		</GridItem>
 		<GridItem name="p-bsky">
-			<h3>Bluesky Profile</h3>
+			<Social
+				link="https://bsky.app/profile/yashkukreja.bsky.social"
+				image={ BlueSkyImagePath }
+				text="Checkout my Bluesky profile."
+			/>
 		</GridItem>
 	</Grid>
 </Layout>

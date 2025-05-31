@@ -1,14 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ChatBox from "../components/Chat/ChatBox.jsx";
 import Chats from "../components/Chat/Chats.jsx";
-import Notice from "../components/Notice/Notice.astro";
 
 ---
 <Layout highlight="true" title="Chat">
 	<div class="chat">
-		<Chats client:load />
-		<ChatBox client:load />
+		<Chats client:only="react" />
+		<!-- <ChatBox client:load /> -->
 	</div>
 </Layout>
 

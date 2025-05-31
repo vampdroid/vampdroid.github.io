@@ -2,11 +2,11 @@
 
 :root {
 	--grid-area-desktop:
-		"p-info p-info p-info p-info yt-cnt yt-cnt"
+		"p-info p-info p-info ai-cht yt-cnt yt-cnt"
 		"p-expn p-expn yt-chn yt-chn yt-cnt yt-cnt"
-		"p-expn p-expn ai-cht ai-cht bl-cnt bl-cnt"
-		"p-proj p-proj p-lkdn p-xcom bl-cnt bl-cnt"
-		"p-proj p-proj p-inst p-bsky bl-cnt bl-cnt";
+		"p-expn p-expn p-lkdn p-lkdn bl-cnt bl-cnt"
+		"p-proj p-proj p-xcom p-xcom bl-cnt bl-cnt"
+		"p-proj p-proj p-bsky p-bsky bl-cnt bl-cnt";
 	--grid-area-mobile:
 		"p-info"
 		"p-expn"

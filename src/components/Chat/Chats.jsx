@@ -1,45 +1,97 @@
 import './chat.scss';
+import ChatBox from './ChatBox';
+import { useState } from 'react';
 
 const Chats = () => {
+	const defaultFirstAIMessages = [
+		'Konichiwa, I am Yash Kukreja. Ask me anything?',
+		'Hello, I am Yash Kukreja. How can I assist you today?',
+		'Hi there! I am Yash Kukreja\'s AI assistant, Ask me anything about Yash.(it will remain between us okay?!)',
+		'Greetings! I am Yash Kukreja\'s AI assistant. What would you like to know?',
+	];
+	
+	const [messages, setMessages] = useState(() => {
+	  const randomMessage = defaultFirstAIMessages[Math.floor(Math.random() * defaultFirstAIMessages.length)];
+	  return [{ by: 'ai', text: randomMessage }];
+	});
+
+	async function getGeminiResponse(prompt) {
+		setMessages((prevMessages) => [
+			...prevMessages,
+			{ by: 'user', text: prompt },
+		]);
+
+		const res = await fetch('https://gemini-serverless.vercel.app/api/chat', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ prompt }),
+		});
+
+		const data = await res.json();
+		console.log(data);
+		setMessages((prevMessages) => [
+			...prevMessages,
+			{ by: 'ai', text: data.candidates[0].content.parts[0].text },
+		]);
+	}
+
 	return (
-		<div className="chats">
-			<p className="chats__chat chats__chat--ai">Hey Amma' AI</p>
-			<p className="chats__chat chats__chat--user">In an increasingly dynamic landscape, we must navigate through synergistic solutions and value-added propositions.
-Leveraging core competencies and stakeholder alignment, we unlock scalable ecosystems.
-Thus, our paradigm shift facilitates robust bandwidth optimization for tomorrow’s frontier.</p>
-			<p className="chats__chat chats__chat--ai">Operational excellence hinges on our ability to ideate scalable frameworks within a results-oriented matrix.
-Through iterative optimization, we harmonize mission-critical touchpoints into cohesive deliverables.
-Our blueprint is predicated on ecosystemic integration, where key performance indicators drive innovation.
-In this vein, leveraging stakeholder mindshare enables deep pes into granular data verticals.
-We continually recalibrate to empower transformational leadership across omni-channel platforms.
-Ultimately, it's about unlocking potential through agile-driven strategies that resonate across silos.</p>
-			<p className="chats__chat chats__chat--user">The synergy of our cross-functional paradigms leverages holistic infrastructures for enhanced deliverables. Proactively leveraging touchpoints, we foster innovation across verticals.</p>
-			<p className="chats__chat chats__chat--ai">At the intersection of thought leadership and disruptive innovation lies our true value proposition.
-By streamlining synergistic workflows, we enable a culture of continuous ideation and empowered execution.
-Our end-to-end solutions seamlessly dovetail with industry best practices to drive sustainable ROI.
-We contextualize market dynamics through proactive outreach and hyper-personalized engagement.
-The holistic convergence of data streams facilitates real-time decision intelligence.
-Through blue-sky thinking and zero-friction onboarding, we future-proof organizational agility.
-It’s not just about pivoting — it’s about orchestrating a value-centric metamorphosis.
-In short, we don’t just move the needle; we recalibrate the entire dashboard.</p>
-			<p className="chats__chat chats__chat--user">The synergy of our cross-functional paradigms leverages holistic infrastructures for enhanced deliverables. Proactively leveraging touchpoints, we foster innovation across verticals.</p>
-			<p className="chats__chat chats__chat--ai">At the intersection of thought leadership and disruptive innovation lies our true value proposition.
-By streamlining synergistic workflows, we enable a culture of continuous ideation and empowered execution.
-Our end-to-end solutions seamlessly dovetail with industry best practices to drive sustainable ROI.
-We contextualize market dynamics through proactive outreach and hyper-personalized engagement.
-The holistic convergence of data streams facilitates real-time decision intelligence.
-Through blue-sky thinking and zero-friction onboarding, we future-proof organizational agility.
-It’s not just about pivoting — it’s about orchestrating a value-centric metamorphosis.
-In short, we don’t just move the needle; we recalibrate the entire dashboard.</p>
-			<p className="chats__chat chats__chat--user">The synergy of our cross-functional paradigms leverages holistic infrastructures for enhanced deliverables. Proactively leveraging touchpoints, we foster innovation across verticals.</p>
-			<p className="chats__chat chats__chat--ai">Hey Amma' AI</p>
-			<p className="chats__chat chats__chat--user">Hey Amma' User</p>
-			<p className="chats__chat chats__chat--ai">Hey Amma' AI</p>
-			<p className="chats__chat chats__chat--user">Hey Amma' User</p>
-			<p className="chats__chat chats__chat--ai">Hey Amma' AI</p>
-			<p className="chats__chat chats__chat--user">Hey Amma' User</p>
-		</div>
+		<>
+			<div className="chats">
+				{messages.map((message, index) => (
+					<p key={index} className={`chats__chat chats__chat--${message.by}`}>
+						{message.text}
+					</p>
+				))}
+			</div>
+			<ChatBox askAI={ getGeminiResponse }/>
+		</>
 	);
 }
 
 export default Chats;
+
+/*
+ Todos:
+ 1. Limit the characters as its just a portfolio info.
+ 2. Make good changes to system instructions.
+ 3. Handle per minute limit as well as per day limits!
+ {
+    "error": {
+        "code": 429,
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+        "status": "RESOURCE_EXHAUSTED",
+        "details": [
+            {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                    {
+                        "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                        "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+                        "quotaDimensions": {
+                            "location": "global",
+                            "model": "gemini-2.0-flash"
+                        },
+                        "quotaValue": "15"
+                    }
+                ]
+            },
+            {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                    {
+                        "description": "Learn more about Gemini API quotas",
+                        "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                    }
+                ]
+            },
+            {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "30s"
+            }
+        ]
+    }
+}
+*/
