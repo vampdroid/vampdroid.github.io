@@ -1,27 +1,9 @@
 ---
 import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 import ChatLottieUrl from "../../assets/lotties/chat.json?url";
+import "./chat.scss";
 ---
 <div class="chat-button">
 	<LottieAnimation src={ChatLottieUrl} autoplay="visible" class="chat-button__animation" />
 	<p class="chat-button__description">Chat with my AI assistant!</p>
 </div>
-
-<style>
-	.chat-button {
-		padding: 0;
-	}
-
-	.chat-button__animation {
-		display: flex;
-		justify-content: center;
-	}
-
-	svg {
-		max-height: 150px;
-	}
-
-	.chat-button__description {
-		text-align: center;
-	}
-</style>

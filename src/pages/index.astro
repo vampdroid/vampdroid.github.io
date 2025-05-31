@@ -10,6 +10,7 @@ import ProfileImagePath from "../assets/images/profile.webp";
 import LinkedInProfilePath from "../assets/images/linkedin.png";
 import XImagePath from "../assets/images/x.png";
 import BlueSkyImagePath from "../assets/images/bluesky.png";
+import GithubImagePath from "../assets/images/github.png";
 import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
@@ -25,18 +26,31 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 			/>
 		</GridItem>
 		<GridItem name="p-expn">
-			<Experience>
-				<strong>rtCamp</strong> 
-				<span><em>Software Engineer</em> | 2023 - Present</span>
-				<ul>
-					<li>Worked with a leading enterprise travel company to craft and enhance their user-facing website.</p>
-					<li>Collaborated closely with the marketing team to implement A/B testing</p>
-					<li>Technologies: WordPress & Gutenberg, TypeScript, SCSS and Blade.</li>
-				</ul>
-			</Experience>
+			<Experience
+				title="Experience"
+				experiences={
+					[
+						{
+							company: "rtCamp",
+							role: "Software Engineer",
+							duration: "2023 - Present",
+							description: ["Worked with a leading enterprise travel company to craft and enhance their user-facing website.","Technologies: WordPress & Gutenberg, TypeScript, SCSS and Blade."],
+							technologies: ["WordPress & Gutenberg", "TypeScript", "SCSS", "Blade"]
+						},
+						{
+							company: "Youtube",
+							role: "Content Creation",
+							duration: "2020 - 2022 -- Break -- 2025 - Present",
+							description: ["Creating content around Software Engineering, Web Development, and Tech."],
+							technologies: ["Video Production", "Content Strategy"]
+						}
+					]
+				}
+			/>
 		</GridItem>
 		<GridItem name="yt-cnt">
 			<h3>Latest Youtube Content</h3>
+			<h6>Comming Soon</h6>
 		</GridItem>
 		<GridItem name="yt-chn" url="https://www.youtube.com/@howsthecode">
 			<YoutubeChannel
@@ -49,9 +63,11 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 		</GridItem>
 		<GridItem name="bl-cnt">
 			<h3>Blog Content</h3>
+			<h6>Comming Soon</h6>
 		</GridItem>
 		<GridItem name="p-proj">
 			<h3>Personal Project</h3>
+			<h6>Comming Soon</h6>
 		</GridItem>
 		<GridItem name="p-lkdn">
 			<Social
@@ -60,7 +76,7 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 				text="Checkout my LinkedIn profile."
 			/>
 		</GridItem>
-		<GridItem name="p-xcom">
+		<!-- <GridItem name="p-xcom">
 			<Social
 				link="https://x.com/yashskukreja"
 				image={ XImagePath }
@@ -72,6 +88,13 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 				link="https://bsky.app/profile/yashkukreja.bsky.social"
 				image={ BlueSkyImagePath }
 				text="Checkout my Bluesky profile."
+			/>
+		</GridItem> -->
+		<GridItem name="p-gthb">
+			<Social
+				link="https://github.com/vampdroid"
+				image={ GithubImagePath }
+				text="Checkout my Github profile."
 			/>
 		</GridItem>
 	</Grid>

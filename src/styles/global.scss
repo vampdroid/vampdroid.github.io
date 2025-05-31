@@ -4,21 +4,19 @@
 	--grid-area-desktop:
 		"p-info p-info p-info ai-cht yt-cnt yt-cnt"
 		"p-expn p-expn yt-chn yt-chn yt-cnt yt-cnt"
-		"p-expn p-expn p-lkdn p-lkdn bl-cnt bl-cnt"
-		"p-proj p-proj p-xcom p-xcom bl-cnt bl-cnt"
-		"p-proj p-proj p-bsky p-bsky bl-cnt bl-cnt";
+		"p-expn p-expn p-lkdn p-gthb bl-cnt bl-cnt"
+		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt"
+		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt";
 	--grid-area-mobile:
 		"p-info"
+		"ai-cht"
 		"p-expn"
 		"yt-chn"
 		"p-proj"
 		"yt-cnt"
 		"bl-cnt"
-		"ai-cht"
-		"p-lkdn"
-		"p-xcom"
-		"p-inst"
-		"p-bsky";
+		"p-gthb"
+		"p-lkdn";
 	--grid-area-tablet:
 		"p-info p-info p-info p-info"
 		"p-expn p-expn yt-chn yt-chn"
@@ -27,7 +25,7 @@
 		"p-proj p-proj bl-cnt bl-cnt"
 		"yt-cnt yt-cnt bl-cnt bl-cnt"
 		"yt-cnt yt-cnt bl-cnt bl-cnt"
-		"p-lkdn p-xcom p-inst p-bsky";
+		"p-lkdn p-lkdn p-gthb p-gthb";
 	--dark-primary: #090909;
 	--dark-secondary: #141414;
 	--dark-accent: #212121;
