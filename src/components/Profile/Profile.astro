@@ -15,10 +15,15 @@ const { title, highlight, description, image } = Astro.props;
 <style>
 	.profile {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		gap: var(--col-gutter);
 		background-color: var(--purple-accent);
 		height: 100%;
+
+		@media screen and (min-width: 768px) {
+			flex-direction: row;
+		}
 	}
 
 	.profile__image {
