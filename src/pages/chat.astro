@@ -1,26 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Chats from "../components/Chat/Chats.jsx";
-
 ---
-<Layout highlight="true" title="Chat">
+<Layout title="Chat">
+	<h1>Chat with my AI bot</h1>
 	<div class="chat">
 		<Chats client:only="react" />
-		<!-- <ChatBox client:load /> -->
 	</div>
 </Layout>
-
-<style>
-	.chat {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		height: 100%;
-		background-color: var(--color-background);
-		position: relative;
-
-		h1 {
-			text-align: center;
-		}
-	}
-</style>

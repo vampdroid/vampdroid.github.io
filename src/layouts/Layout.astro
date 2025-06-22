@@ -1,6 +1,6 @@
 ---
 import "../styles/global.scss";
-const { title, highlight } = Astro.props;
+const { title } = Astro.props;
 ---
 <html lang="en">
   <head>
@@ -9,19 +9,9 @@ const { title, highlight } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{ title }</title>
   </head>
-  <body>
-	<main class={ `main ${ highlight ? 'main--highlight' : '' }` }>
+  <body class="light">
+	<main class='main'>
 		<slot />
 	</main>
   </body>
 </html>
-
-
-<style>
-	.main--highlight {
-		background-color: var(--dark-secondary);
-		border-radius: 12px;
-		height: 90vh;
-		margin: 5vh auto;
-	}
-</style>

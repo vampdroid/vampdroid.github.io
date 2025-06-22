@@ -1,4 +1,5 @@
 ---
+import './Experience.scss';
 const { title, experiences } = Astro.props;
 ---
 <div class="experience">
@@ -7,38 +8,14 @@ const { title, experiences } = Astro.props;
 		experiences?.map((experience: any) => (
 			<div class="experience__item">
 				<strong>{experience.company}</strong> 
-				<span><em>{experience.role}</em> | {experience.duration}</span>
+				<em>{experience.role}</em>
+				{experience.duration}
 				<ul>
 					{experience.description.map((desc:string) => (
-						<li>{desc}</li>
+						<li><p>{desc}</p></li>
 					))}
 				</ul>
 			</div>
 		))
 	}
-	
-	<strong>Have more questions? <a href="/chat"> Ask My AI assistant.&#128513;</a></strong>
 </div>
-
-<style>
-	.experience {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
-
-	.experience__item {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
-
-	a {
-		/* display: inline; */
-		background-color: var(--purple-accent);
-		padding: 4px 6px;
-		border-radius: 10px;
-		width: fit-content;
-		margin-top: 5px;
-	}
-</style>

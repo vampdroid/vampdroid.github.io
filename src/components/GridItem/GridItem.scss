@@ -1,0 +1,9 @@
+.grid-item {
+	border-radius: 12px;
+	background-color: var(--color-secondary);
+
+	> * {
+		padding: 24px;
+		border-radius: 12px;
+	}
+}

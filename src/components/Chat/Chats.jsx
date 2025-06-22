@@ -6,7 +6,7 @@ const Chats = () => {
 	const defaultFirstAIMessages = [
 		'Konichiwa, I am Yash Kukreja. Ask me anything?',
 		'Hello, I am Yash Kukreja. How can I assist you today?',
-		'Hi there! I am Yash Kukreja\'s AI assistant, Ask me anything about Yash.(it will remain between us okay?!)',
+		'Hi there! I am Yash Kukreja\'s AI assistant, Ask me anything about Yash (it will remain between us okay?!)',
 		'Greetings! I am Yash Kukreja\'s AI assistant. What would you like to know?',
 	];
 	
@@ -38,7 +38,7 @@ const Chats = () => {
 	}
 
 	return (
-		<>
+		<div className="chats__container">
 			<div className="chats">
 				{messages.map((message, index) => (
 					<p key={index} className={`chats__chat chats__chat--${message.by}`}>
@@ -47,7 +47,7 @@ const Chats = () => {
 				))}
 			</div>
 			<ChatBox askAI={ getGeminiResponse }/>
-		</>
+		</div>
 	);
 }
 
