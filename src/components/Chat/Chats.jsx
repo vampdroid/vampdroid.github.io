@@ -9,7 +9,7 @@ const Chats = () => {
 		'Hi there! I am Yash Kukreja\'s AI assistant, Ask me anything about Yash (it will remain between us okay?!)',
 		'Greetings! I am Yash Kukreja\'s AI assistant. What would you like to know?',
 	];
-	
+
 	const [messages, setMessages] = useState(() => {
 	  const randomMessage = defaultFirstAIMessages[Math.floor(Math.random() * defaultFirstAIMessages.length)];
 	  return [{ by: 'ai', text: randomMessage }];

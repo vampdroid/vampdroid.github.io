@@ -11,6 +11,9 @@ import GithubImagePath from "../assets/images/github.png";
 import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
+import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.jsx";
+import XImagePath from "../assets/images/x.png";
+import BlueSkyImagePath from "../assets/images/bluesky.png";
 ---
 
 <Layout title={ SITE_TITLE }>
@@ -47,7 +50,7 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 		</GridItem>
 		<GridItem name="yt-cnt">
 			<h3>Latest Youtube Content</h3>
-			<h6>Comming Soon</h6>
+			<YoutubeVideos client:only="react" />
 		</GridItem>
 		<GridItem name="yt-chn" url="https://www.youtube.com/@howsthecode">
 			<YoutubeChannel
@@ -60,24 +63,38 @@ import ChatButton from "../components/Chat/ChatButton.astro";
 		</GridItem>
 		<GridItem name="bl-cnt">
 			<h3>Blog Content</h3>
-			<h6>Comming Soon</h6>
+			<p>Layout and CMS setup in progress</p>
 		</GridItem>
 		<GridItem name="p-proj">
 			<h3>Personal Project</h3>
-			<h6>Comming Soon</h6>
+			<p>Layout in Progress</p>
 		</GridItem>
 		<GridItem name="p-lkdn">
 			<Social
 				link="https://www.linkedin.com/in/yash-kukreja/"
 				image={ LinkedInProfilePath }
-				text="Follow me on LinkedIn."
+				text="Follow me on LinkedIn"
 			/>
 		</GridItem>
 		<GridItem name="p-gthb">
 			<Social
 				link="https://github.com/vampdroid"
 				image={ GithubImagePath }
-				text="Checkout my Github."
+				text="Checkout my Github"
+			/>
+		</GridItem>
+		<GridItem name="p-xcom">
+			<Social
+				link="https://x.com/yashskukreja"
+				image={ XImagePath }
+				text="X Profile"
+			/>
+		</GridItem>
+		<GridItem name="p-bsky">
+			<Social
+				link="https://bsky.app/profile/yashkukreja.bsky.social"
+				image={ BlueSkyImagePath }
+				text="Bluesky"
 			/>
 		</GridItem>
 	</Grid>

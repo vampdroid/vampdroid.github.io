@@ -4,7 +4,8 @@
 	--grid-area-desktop:
 		"p-info p-info p-info ai-cht yt-cnt yt-cnt"
 		"p-expn p-expn yt-chn yt-chn yt-cnt yt-cnt"
-		"p-expn p-expn p-lkdn p-gthb bl-cnt bl-cnt"
+		"p-expn p-expn p-lkdn p-gthb yt-cnt yt-cnt"
+		"p-expn p-expn p-xcom p-bsky bl-cnt bl-cnt"
 		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt"
 		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt";
 	--grid-area-mobile:
@@ -12,20 +13,23 @@
 		"ai-cht"
 		"p-expn"
 		"yt-chn"
-		"p-proj"
 		"yt-cnt"
 		"bl-cnt"
+		"p-proj"
 		"p-gthb"
-		"p-lkdn";
+		"p-lkdn"
+		"p-xcom"
+		"p-bsky";
+
 	--grid-area-tablet:
-		"p-info p-info p-info p-info"
+		"p-info p-info p-info ai-cht"
 		"p-expn p-expn yt-chn yt-chn"
-		"p-expn p-expn ai-cht ai-cht"
-		"p-proj p-proj ai-cht ai-cht"
+		"p-expn p-expn bl-cnt bl-cnt"
+		"p-proj p-proj bl-cnt bl-cnt"
 		"p-proj p-proj bl-cnt bl-cnt"
 		"yt-cnt yt-cnt bl-cnt bl-cnt"
-		"yt-cnt yt-cnt bl-cnt bl-cnt"
-		"p-lkdn p-lkdn p-gthb p-gthb";
+		"yt-cnt yt-cnt p-lkdn p-xcom"
+		"yt-cnt yt-cnt p-gthb p-bsky";
 	--color-primary: #090909;
 	--color-secondary: #141414;
 	--color-accent: #212121;
@@ -114,6 +118,7 @@ h6 {
 	color: var(--color-font);
 	text-transform: uppercase;
 	font-weight: 700;
+	letter-spacing: -1px;
 }
 
 h1 {
