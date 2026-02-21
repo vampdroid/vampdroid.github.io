@@ -1,54 +1,27 @@
 @import url('./fonts.scss');
 
 :root {
-	--grid-area-desktop:
-		"p-info p-info p-info ai-cht yt-cnt yt-cnt"
-		"p-expn p-expn yt-chn yt-chn yt-cnt yt-cnt"
-		"p-expn p-expn p-lkdn p-gthb yt-cnt yt-cnt"
-		"p-expn p-expn p-xcom p-bsky bl-cnt bl-cnt"
-		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt"
-		"p-proj p-proj p-proj p-proj bl-cnt bl-cnt";
-	--grid-area-mobile:
-		"p-info"
-		"ai-cht"
-		"p-expn"
-		"yt-chn"
-		"yt-cnt"
-		"bl-cnt"
-		"p-proj"
-		"p-gthb"
-		"p-lkdn"
-		"p-xcom"
-		"p-bsky";
+	/* New Color Palette based on Tailwind Config */
+	--color-primary: #135bec;
+	--color-bg: #f6f6f8;
+	--color-card: #ffffff;
+	--color-card-hover: #f9fafb;
+	--color-text: #1f2937;
+	--color-muted: #6b7280;
+	--color-border: #e5e7eb;
 
-	--grid-area-tablet:
-		"p-info p-info p-info ai-cht"
-		"p-expn p-expn yt-chn yt-chn"
-		"p-expn p-expn bl-cnt bl-cnt"
-		"p-proj p-proj bl-cnt bl-cnt"
-		"p-proj p-proj bl-cnt bl-cnt"
-		"yt-cnt yt-cnt bl-cnt bl-cnt"
-		"yt-cnt yt-cnt p-lkdn p-xcom"
-		"yt-cnt yt-cnt p-gthb p-bsky";
-	--color-primary: #090909;
-	--color-secondary: #141414;
-	--color-accent: #212121;
-	--color-green: #096B68;
-	--color-purple: #5A2A84;
-	--color-orange: #B34700;
-	--color-white: #ffffff;
-	--color-black: #000000;
-	--color-background: #141414;
-	--color-font: #FFFFFF;
-	--color-font-secondary: #BABABA;
-	--heading-font-family: 'Lato';
-	--content-font-family: 'Arvo';
-	--row-gutter: 24px;
-	--col-gutter: 24px;
-	--content-font-size: clamp(16px, 1.8vw, 18px);
-	--button-font-size: clamp(16px, 1.8vw, 18px);
+	--font-sans: 'Inter', sans-serif;
+	--font-display: 'Manrope', sans-serif;
 }
 
+html.dark {
+	--color-bg: #101622;
+	--color-card: #18181b;
+	--color-card-hover: #27272a;
+	--color-text: #e4e4e7;
+	--color-muted: #a1a1aa;
+	--color-border: #27272a;
+}
 
 *,
 *::before,
@@ -56,124 +29,180 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-
-	transition: all 0.3s ease-in-out;
 }
 
 /* For Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-	width: 6px;
-  }
+	width: 8px;
+}
 
-  ::-webkit-scrollbar-track {
-	background: #00000000; /* Light background */
-	border-radius: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-	background-color: var(--color-purple);
-	border-radius: 12px;
-  }
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #3f3f46;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #52525b;
+}
 
 a {
 	text-decoration: none;
 	color: inherit;
 }
 
-strong, em, span {
-	color: var(--color-font);
-}
-
-ul {
-	margin-left: 25px;
-}
-
-li {
-	margin-bottom: 12px;
-}
-
 body {
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	min-height: 100vh;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+::selection {
 	background-color: var(--color-primary);
-	color: var(--color-font-secondary);
-	font-family: var(--content-font-family);
-	letter-spacing: 1px;
-	overflow-x: hidden;
+	color: #ffffff;
 }
 
-button {
-	font-family: var(--heading-font-family);
-	color: var(--color-font);
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: var(--button-font-size);
-}
+.main-container {
+	max-width: 80rem;
+	/* max-w-7xl */
+	margin: 0 auto;
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1.5rem;
+	/* gap-6 */
+	align-items: flex-start;
+	/* Prevents columns from expanding height to match each other */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--heading-font-family);
-	color: var(--color-font);
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: -1px;
-}
-
-h1 {
-	font-size: clamp(22px, 4vw, 32px);
-	line-height: 1.3;
-	margin-bottom: 12px;
-}
-
-h2 {
-	font-size: clamp(20px, 3.5vw, 28px);
-	line-height: 1.35;
-	margin-bottom: 10px;
-}
-
-h3 {
-	font-size: clamp(18px, 3vw, 24px);
-	line-height: 1.4;
-	margin-bottom: 8px;
-}
-
-h4 {
-	font-size: clamp(17px, 2.5vw, 20px);
-	line-height: 1.4;
-	margin-bottom: 6px;
-}
-
-h5 {
-	font-size: clamp(16px, 2vw, 18px);
-	line-height: 1.45;
-	margin-bottom: 6px;
-}
-
-h6 {
-	font-size: clamp(15px, 1.8vw, 16px);
-	line-height: 1.5;
-	margin-bottom: 4px;
-}
-
-input {
-	font-family: var(--content-font-family);
-	font-weight: 400;
-}
-
-p {
-	line-height: 1.7;
-	margin-bottom: 14px;
-	font-weight: 400;
-}
-
-.main {
-	padding: var(--col-gutter);
-	position: relative;
-
-	@media screen and (min-width: 1200px) {
-		max-width: 1200px;
-		margin: 0 auto;
+	@media (min-width: 768px) {
+		padding: 2rem;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
 	}
+
+	@media (min-width: 1024px) {
+		padding: 3rem;
+	}
+}
+
+.col-main {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	@media (min-width: 768px) {
+		grid-column: span 12 / span 12;
+	}
+
+	@media (min-width: 1024px) {
+		grid-column: span 8 / span 8;
+	}
+}
+
+.col-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	@media (min-width: 768px) {
+		grid-column: span 12 / span 12;
+	}
+
+	@media (min-width: 1024px) {
+		grid-column: span 4 / span 4;
+	}
+}
+
+.card {
+	background-color: var(--color-card);
+	border-radius: 1rem;
+	/* rounded-2xl */
+	padding: 1.5rem;
+	/* p-6 */
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	/* shadow-sm */
+	border: 1px solid var(--color-border);
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	position: relative;
+	overflow: hidden;
+
+	@media (min-width: 768px) {
+		padding: 2rem;
+		/* md:p-8 */
+	}
+}
+
+.card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.card-small {
+	padding: 1rem;
+	border-radius: 0.75rem;
+
+	@media (min-width: 768px) {
+		padding: 1rem;
+	}
+}
+
+.theme-toggle {
+	position: fixed;
+	bottom: 1.5rem;
+	right: 1.5rem;
+	z-index: 50;
+
+	&-btn {
+		background-color: var(--color-card);
+		color: var(--color-text);
+		width: 3rem;
+		height: 3rem;
+		border-radius: 9999px;
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		border: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: transform 0.3s;
+		font-size: 1.25rem;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+
+.dark-hidden {
+	display: inline-block;
+}
+
+html.dark .dark-hidden {
+	display: none;
+}
+
+.dark-block {
+	display: none;
+}
+
+html.dark .dark-block {
+	display: inline-block;
+	color: #facc15;
+}
+
+/* Typographic utility */
+.font-display {
+	font-family: var(--font-display);
+}
+
+.text-primary {
+	color: var(--color-primary);
+}
+
+.text-muted {
+	color: var(--color-muted);
 }

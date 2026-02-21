@@ -1,9 +1,52 @@
 ---
-import chatIcon from "../../assets/images/chat.png";
-import { Image } from "astro:assets";
-import "./chat.scss";
 ---
-<div class="chat-button">
-	<Image src={chatIcon} alt="Chat icon" class="chat-button__icon" />
-	<p class="chat-button__description">Chat with my AI assistant!</p>
-</div>
+<a href="/chat" class="card chat-card group">
+	<div class="chat-icon-container">
+		<i class="fa-solid fa-robot chat-icon"></i>
+	</div>
+	<p class="chat-text">Chat with my AI assistant!</p>
+</a>
+
+<style>
+	.chat-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: 0.75rem;
+		cursor: pointer;
+		height: 100%;
+		text-decoration: none;
+	}
+	.chat-card:hover {
+		background-color: var(--color-card-hover);
+	}
+	.chat-icon-container {
+		width: 3.5rem;
+		height: 3.5rem;
+		background-color: rgba(19, 91, 236, 0.1); /* primary/10 */
+		border-radius: 9999px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-primary);
+		transition: background-color 0.3s, color 0.3s;
+	}
+	.chat-card:hover .chat-icon-container {
+		background-color: var(--color-primary);
+		color: #ffffff;
+	}
+	.chat-icon {
+		font-size: 1.5rem;
+	}
+	.chat-text {
+		font-weight: 500;
+		font-size: 0.875rem;
+		color: var(--color-text);
+
+		@media (min-width: 768px) {
+			font-size: 1rem;
+		}
+	}
+</style>

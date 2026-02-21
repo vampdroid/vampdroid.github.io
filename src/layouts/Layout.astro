@@ -1,6 +1,5 @@
 ---
 import "../styles/global.scss";
-import Notice from "../components/Notice/Notice.astro";
 const { title } = Astro.props;
 ---
 <html lang="en">
@@ -9,10 +8,31 @@ const { title } = Astro.props;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{ title }</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
-  <body class="light">
-	<main class='main'>
+  <body>
+	<main class='main-container'>
 		<slot />
 	</main>
+	<div class="theme-toggle">
+		<button class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+			<i class="fa-solid fa-moon dark-hidden"></i>
+			<i class="fa-solid fa-sun dark-block"></i>
+		</button>
+	</div>
+	<script>
+		const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark');
+		}
+
+		document.querySelector('.theme-toggle-btn')?.addEventListener('click', () => {
+			document.documentElement.classList.toggle('dark');
+			localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+		});
+	</script>
   </body>
 </html>
