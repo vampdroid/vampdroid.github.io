@@ -16,8 +16,6 @@
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "astro": "^5.4.1",
-    "astro-integration-lottie": "^0.3.2",
-    "lottie-web": "^5.13.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sass": "^1.89.0"

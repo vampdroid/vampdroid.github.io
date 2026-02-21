@@ -1,9 +1,9 @@
 ---
-import LottieAnimation from "astro-integration-lottie/Lottie.astro";
-import ChatLottieUrl from "../../assets/lotties/chat.json?url";
+import chatIcon from "../../assets/images/chat.png";
+import { Image } from "astro:assets";
 import "./chat.scss";
 ---
 <div class="chat-button">
-	<LottieAnimation src={ChatLottieUrl} autoplay="visible" class="chat-button__animation" />
+	<Image src={chatIcon} alt="Chat icon" class="chat-button__icon" />
 	<p class="chat-button__description">Chat with my AI assistant!</p>
 </div>
