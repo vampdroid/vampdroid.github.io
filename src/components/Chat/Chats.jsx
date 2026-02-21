@@ -21,7 +21,7 @@ const Chats = () => {
 			{ by: 'user', text: prompt },
 		]);
 
-		const res = await fetch('https://gemini-serverless.vercel.app/api/chat', {
+		const res = await fetch('https://portfolio-datalayer.vercel.app/api/chat', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
