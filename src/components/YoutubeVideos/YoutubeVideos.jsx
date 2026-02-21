@@ -8,7 +8,7 @@ function YoutubeVideos() {
 	useEffect(() => {
 		async function fetchVideos() {
 			try {
-				const response = await fetch('https://gemini-serverless.vercel.app/api/youtube');
+				const response = await fetch('https://portfolio-datalayer.vercel.app/api/youtube');
 				if (!response.ok) {
 					console.log(response);
 				}

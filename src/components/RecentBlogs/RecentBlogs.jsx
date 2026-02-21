@@ -1,41 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './recent-blogs.scss';
 
-const SAMPLE_POSTS = [
-	{
-		id: 1,
-		title: "Mastering React Server Components",
-		date: "Oct 24, 2023",
-		excerpt: "Deep dive into RSCs, how they work, and why you should care about them in 2024.",
-		link: "#"
-	},
-	{
-		id: 2,
-		title: "The Future of Web Development with Astro",
-		date: "Sep 15, 2023",
-		excerpt: "Why Astro is becoming my favorite framework for content-heavy websites.",
-		link: "#"
-	},
-	{
-		id: 3,
-		title: "Building Scalable CSS with BEM and SCSS",
-		date: "Aug 30, 2023",
-		excerpt: "How to maintain large stylesheets without losing your mind.",
-		link: "#"
-	}
-];
-
 function RecentBlogs() {
+	const [posts, setPosts] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		async function fetchPosts() {
+			try {
+				// Base URL should ideally be an environment variable
+				const baseUrl = 'https://portfolio-datalayer.vercel.app'; // Assuming deployment same as youtube api
+				const response = await fetch(`${baseUrl}/api/blogs?first=3`);
+				const data = await response.json();
+				
+				if (data.data) {
+					setPosts(data.data);
+				}
+				setIsLoading(false);
+			} catch (error) {
+				console.error('Failed to fetch blogs:', error);
+				setIsLoading(false);
+			}
+		}
+
+		fetchPosts();
+	}, []);
+
+	if (isLoading) {
+		return (
+			<div className='recent-blogs'>
+				<ul className='recent-blogs__list'>
+					{[...Array(3)].map((_, i) => (
+						<li className='recent-blogs__post' key={i}>
+							<div className="post-info loading-placeholder">
+								<div className="placeholder-date"></div>
+								<div className="placeholder-title"></div>
+								<div className="placeholder-excerpt"></div>
+							</div>
+						</li>
+					))}
+				</ul>
+			</div>
+		);
+	}
+
 	return (
 		<div className='recent-blogs'>
 			<ul className='recent-blogs__list'>
-				{SAMPLE_POSTS.map(post => (
+				{posts.map(post => (
 					<li className='recent-blogs__post' key={post.id}>
-						<a href={post.link}>
+						<a href={`/blog/${post.slug}`}>
 							<div className="post-info">
-								<span className="post-date">{post.date}</span>
+								<span className="post-date">{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
 								<h4 className="post-title">{post.title}</h4>
-								<p className="post-excerpt">{post.excerpt}</p>
+								<div className="post-excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
 							</div>
 						</a>
 					</li>
@@ -46,3 +64,4 @@ function RecentBlogs() {
 }
 
 export default RecentBlogs;
+
