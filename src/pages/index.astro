@@ -11,8 +11,8 @@ import GithubImagePath from "../assets/images/github.png";
 import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
-import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.jsx";
-import RecentBlogs from "../components/RecentBlogs/RecentBlogs.jsx";
+import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.astro";
+import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
 import XImagePath from "../assets/images/x.png";
 import BlueSkyImagePath from "../assets/images/bluesky.png";
 ---
@@ -51,7 +51,7 @@ import BlueSkyImagePath from "../assets/images/bluesky.png";
 		</GridItem>
 		<GridItem name="yt-cnt">
 			<h3>Latest Youtube Content</h3>
-			<YoutubeVideos client:only="react" />
+			<YoutubeVideos />
 		</GridItem>
 		<GridItem name="yt-chn" url="https://www.youtube.com/@howsthecode">
 			<YoutubeChannel
@@ -64,7 +64,7 @@ import BlueSkyImagePath from "../assets/images/bluesky.png";
 		</GridItem>
 		<GridItem name="bl-cnt">
 			<h3>Blog Content</h3>
-			<RecentBlogs client:only="react" />
+			<RecentBlogs />
 		</GridItem>
 		<GridItem name="p-proj">
 			<h3>Personal Project</h3>

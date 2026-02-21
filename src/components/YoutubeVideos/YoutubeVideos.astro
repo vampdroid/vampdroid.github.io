@@ -1,0 +1,19 @@
+---
+import { fetchYoutubeVideos } from '../../services/youtube';
+import './youtube-videos.scss';
+
+const videos = await fetchYoutubeVideos();
+---
+
+<div class='youtube-videos'>
+	<ul class='youtube-videos__list'>
+		{videos.map(video => (
+			<li class='youtube-videos__video'>
+				<a href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">
+					<img src={video.thumbnail} alt={video.title} />
+					<p>{video.title}</p>
+				</a>
+			</li>
+		))}
+	</ul>
+</div>

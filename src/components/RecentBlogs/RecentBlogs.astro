@@ -1,0 +1,30 @@
+---
+import { fetchRecentBlogs } from '../../services/blogs';
+import './recent-blogs.scss';
+
+const posts = await fetchRecentBlogs(3);
+
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+---
+
+<div class='recent-blogs'>
+  <ul class='recent-blogs__list'>
+    {posts.map(post => (
+      <li class='recent-blogs__post'>
+        <a href={`/blog/${post.slug}`}>
+          <div class="post-info">
+            <span class="post-date">{formatDate(post.date)}</span>
+            <h4 class="post-title">{post.title}</h4>
+            <div class="post-excerpt" set:html={post.excerpt} />
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
