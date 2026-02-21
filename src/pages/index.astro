@@ -12,6 +12,7 @@ import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
 import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.jsx";
+import RecentBlogs from "../components/RecentBlogs/RecentBlogs.jsx";
 import XImagePath from "../assets/images/x.png";
 import BlueSkyImagePath from "../assets/images/bluesky.png";
 ---
@@ -63,7 +64,7 @@ import BlueSkyImagePath from "../assets/images/bluesky.png";
 		</GridItem>
 		<GridItem name="bl-cnt">
 			<h3>Blog Content</h3>
-			<p>Layout and CMS setup in progress</p>
+			<RecentBlogs client:only="react" />
 		</GridItem>
 		<GridItem name="p-proj">
 			<h3>Personal Project</h3>
