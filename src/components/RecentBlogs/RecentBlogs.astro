@@ -15,16 +15,20 @@ const formatDate = (dateString) => {
 
 <div class='recent-blogs'>
   <ul class='recent-blogs__list'>
-    {posts.map(post => (
-      <li class='recent-blogs__post'>
-        <a href={`/blog/${post.slug}`}>
-          <div class="post-info">
-            <span class="post-date">{formatDate(post.date)}</span>
-            <h4 class="post-title">{post.title}</h4>
-            <div class="post-excerpt" set:html={post.excerpt} />
-          </div>
-        </a>
-      </li>
-    ))}
+    {posts && posts.length > 0 ? (
+      posts.map(post => (
+        <li class='recent-blogs__post'>
+          <a href={`/blog/${post.slug}`}>
+            <div class="post-info">
+              <span class="post-date">{formatDate(post.date)}</span>
+              <h4 class="post-title">{post.title}</h4>
+              <div class="post-excerpt" set:html={post.excerpt} />
+            </div>
+          </a>
+        </li>
+      ))
+    ) : (
+      <li class="no-blogs">No blogs yet! Stay tuned.</li>
+    )}
   </ul>
 </div>

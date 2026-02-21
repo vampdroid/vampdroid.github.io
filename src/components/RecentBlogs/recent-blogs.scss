@@ -91,6 +91,16 @@
 			}
 		}
 	}
+
+	.no-blogs {
+		text-align: center;
+		padding: 20px;
+		opacity: 0.7;
+		font-style: italic;
+		background-color: var(--color-accent);
+		border-radius: 8px;
+		list-style: none;
+	}
 }
 
 @keyframes loading {
