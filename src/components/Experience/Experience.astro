@@ -1,21 +1,21 @@
 ---
 const { title, experiences } = Astro.props;
 ---
-<div class="card experience-card">
-	<h2 class="font-display experience-title">
-		<i class="fa-solid fa-briefcase text-primary icon-small"></i> {title}
+<div class="card experience">
+	<h2 class="font-display experience__title">
+		<i class="fa-solid fa-briefcase text-primary experience__icon"></i> {title}
 	</h2>
 	
-	<div class="timeline">
+	<div class="experience__timeline">
 		{experiences?.map((experience: any, index: number) => (
-			<div class="timeline-item">
-				<span class={`timeline-dot ${index === 0 ? 'dot-primary' : 'dot-secondary'}`}></span>
-				<div class="timeline-header">
-					<h3 class="company-name">{experience.company}</h3>
-					<p class="role-name">{experience.role}</p>
+			<div class="experience__item">
+				<span class={`experience__dot ${index === 0 ? 'experience__dot--primary' : 'experience__dot--secondary'}`}></span>
+				<div class="experience__header">
+					<h3 class="experience__company">{experience.company}</h3>
+					<p class="experience__role">{experience.role}</p>
 				</div>
-				<p class="duration">{experience.duration}</p>
-				<ul class="description-list">
+				<p class="experience__duration">{experience.duration}</p>
+				<ul class="experience__description">
 					{experience.description.map((desc:string) => (
 						<li>{desc}</li>
 					))}
@@ -25,82 +25,6 @@ const { title, experiences } = Astro.props;
 	</div>
 </div>
 
-<style>
-	.experience-card {
-		height: 100%;
-	}
-	.experience-title {
-		font-size: 1.25rem;
-		font-weight: 700;
-		margin-bottom: 2rem;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		color: var(--color-text);
-	}
-	.icon-small {
-		font-size: 0.875rem;
-	}
-	.timeline {
-		position: relative;
-		border-left: 2px solid var(--color-border);
-		margin-left: 0.75rem;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
-	.timeline-item {
-		margin-left: 1.5rem;
-		position: relative;
-	}
-	.timeline-dot {
-		position: absolute;
-		left: -2.02rem;
-		top: 0.25rem;
-		width: 1rem;
-		height: 1rem;
-		border-radius: 9999px;
-		border: 4px solid var(--color-card);
-	}
-	.dot-primary {
-		background-color: var(--color-primary);
-	}
-	.dot-secondary {
-		background-color: var(--color-muted);
-	}
-	.timeline-header {
-		margin-bottom: 0.25rem;
-	}
-	.company-name {
-		font-weight: 700;
-		font-size: 1.125rem;
-		color: var(--color-text);
-	}
-	.role-name {
-		font-size: 0.875rem;
-		color: var(--color-muted);
-		font-style: italic;
-	}
-	.duration {
-		font-size: 0.75rem;
-		font-family: monospace;
-		color: var(--color-primary);
-		margin-bottom: 0.75rem;
-	}
-	.timeline-item:not(:first-child) .duration {
-		color: var(--color-muted);
-	}
-	.description-list {
-		margin: 0;
-		padding-left: 1rem;
-		font-size: 0.875rem;
-		color: var(--color-muted);
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		line-height: 1.625;
-	}
-	.description-list li {
-		margin: 0;
-	}
+<style lang="scss">
+	@use "./Experience.scss";
 </style>

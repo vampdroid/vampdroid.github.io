@@ -1,7 +1,8 @@
 import './chat.scss';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const ChatBox = ( { askAI } ) => {
+	const inputRef = useRef(null);
 
 	const handleInput = (event) => {
 		if(event.key === 'Enter' && !event.shiftKey) {
@@ -11,33 +12,44 @@ const ChatBox = ( { askAI } ) => {
 	}
 
 	const handleInputBlur = () => {
-		const inputElement = document.querySelector('.chat-box__input');
-
-		if (inputElement.innerHTML === '<br>') {
-			inputElement.innerText = '';
+		if (inputRef.current && inputRef.current.innerHTML === '<br>') {
+			inputRef.current.innerText = '';
 		}
 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const inputElement = document.querySelector('.chat-box__input');
-		const userMessage = inputElement.innerText.trim();
+		const userMessage = inputRef.current.innerText.trim();
 
 		if ( userMessage ) {
-			inputElement.innerText = '';
-			inputElement.blur();
+			inputRef.current.innerText = '';
+			inputRef.current.blur();
 			askAI(userMessage);
 		}
 	}
 
 	return (
-		<div className="chat-box">
-			<div contentEditable="plaintext-only" className="chat-box__input" name="user-message" placeholder="Ask me bout' myself!" onKeyDown={(e)=>handleInput(e)} onBlur={()=>handleInputBlur()}></div>
-			<button  className="chat-box__submit-button" onClick={(e) => handleSubmit(e)}>
-				<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M14.4376 15.3703L12.3042 19.5292C11.9326 20.2537 10.8971 20.254 10.525 19.5297L4.24059 7.2971C3.81571 6.47007 4.65077 5.56156 5.51061 5.91537L18.5216 11.2692C19.2984 11.5889 19.3588 12.6658 18.6227 13.0704L14.4376 15.3703ZM14.4376 15.3703L5.09594 6.90886" stroke="#000000" strokeWidth="2" strokeLinecap="round"/>
-				</svg>
-			</button>
+		<div className="relative w-full mt-auto">
+			<div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark to-transparent -top-12 z-0 pointer-events-none h-12" style={{backgroundImage: 'linear-gradient(to top, var(--color-bg), var(--color-bg), transparent)'}}></div>
+			<div className="chat-input-wrapper rounded-2xl p-2 flex items-center shadow-lg relative z-10 transition-colors" style={{ display: 'flex', padding: '0.5rem', borderRadius: '1rem', alignItems: 'center'}}>
+				<div 
+					ref={inputRef}
+					contentEditable="plaintext-only" 
+					className="chat-input" 
+					name="user-message" 
+					placeholder="Type your message..." 
+					onKeyDown={(e)=>handleInput(e)} 
+					onBlur={()=>handleInputBlur()}
+					style={{ flex: 1, padding: '0.75rem 1rem', outline: 'none', backgroundColor: 'transparent', minHeight: '1.5rem', maxHeight: '150px', overflowY: 'auto', fontSize: '1rem' }}
+				></div>
+				<button 
+					className="bg-white hover:bg-gray-200 transition-colors rounded-xl p-3 flex items-center justify-center cursor-pointer" 
+					onClick={(e) => handleSubmit(e)}
+					style={{ backgroundColor: 'var(--color-text)', color: 'var(--color-bg)', padding: '0.75rem', borderRadius: '0.75rem', border: 'none', display: 'flex' }}
+				>
+					<i className="fa-solid fa-paper-plane text-sm"></i>
+				</button>
+			</div>
 		</div>
 	);
 }
