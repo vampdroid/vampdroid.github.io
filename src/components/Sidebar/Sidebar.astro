@@ -68,11 +68,14 @@ const navItems = [
 
 <script>
 	document.addEventListener('astro:page-load', () => {
-		const btn = document.querySelector('.theme-toggle-btn-sidebar');
-		if (btn) {
-			btn.addEventListener('click', () => {
+		const sidebarThemeToggleButton = document.querySelector('.theme-toggle-btn-sidebar');
+
+		if (sidebarThemeToggleButton) {
+			sidebarThemeToggleButton.addEventListener('click', () => {
 				document.documentElement.classList.toggle('dark');
-				localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+
+				const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+				localStorage.setItem('theme', currentTheme);
 			});
 		}
 	});

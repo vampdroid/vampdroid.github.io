@@ -1,9 +1,14 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import Chats from "../components/Chat/Chats.astro";
+import Chat from "../components/Chat/Chat.jsx";
 ---
+
 <PageLayout title="AI Chat - Yash Kukreja">
-	<div style="display: flex; flex-direction: column; width: 100%; flex: 1; min-height: calc(100vh - 4rem);" transition:name="chat-box">
-		<Chats />
+	<div class="chat-page-container" transition:name="chat-box">
+		<Chat client:load />
 	</div>
 </PageLayout>
+
+<style lang="scss">
+	@use "./_chat.scss";
+</style>

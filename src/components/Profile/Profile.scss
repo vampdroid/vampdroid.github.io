@@ -1,12 +1,20 @@
 .profile {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 24px;
 	height: 100%;
 
 	&__image-wrapper {
 		position: relative;
 		flex-shrink: 0;
+	}
+
+	&__image-ring {
+		width: 96px;
+		height: 96px;
+		border-radius: 9999px;
+		overflow: hidden;
+		box-shadow: 0 0 0 2px rgba(19, 91, 236, 0.2);
 	}
 
 	&__image {
@@ -15,44 +23,36 @@
 		object-fit: cover;
 	}
 
+	&__status-dot {
+		position: absolute;
+		bottom: 4px;
+		right: 4px;
+		width: 16px;
+		height: 16px;
+		background-color: #22c55e;
+		border: 2px solid var(--color-card);
+		border-radius: 9999px;
+	}
+
+
 	&__title {
-		font-size: 1.5rem;
+		font-size: 24px;
 		font-weight: 700;
-		margin-bottom: 0.5rem;
+		margin-bottom: 8px;
 		color: var(--color-text);
 		text-transform: uppercase;
 
 		@media (min-width: 768px) {
-			font-size: 1.875rem;
+			font-size: 30px;
 		}
 	}
 
 	&__description {
-		font-size: 0.875rem;
+		font-size: 14px;
 		line-height: 1.625;
 
 		@media (min-width: 768px) {
-			font-size: 1rem;
+			font-size: 16px;
 		}
 	}
-}
-
-.profile-image-wrapper {
-	width: 6rem;
-	height: 6rem;
-	border-radius: 9999px;
-	overflow: hidden;
-	box-shadow: 0 0 0 2px rgba(19, 91, 236, 0.2);
-	/* ring-primary/20 */
-}
-
-.status-dot {
-	position: absolute;
-	bottom: 0.25rem;
-	right: 0.25rem;
-	width: 1rem;
-	height: 1rem;
-	background-color: #22c55e;
-	border: 2px solid var(--color-card);
-	border-radius: 9999px;
 }

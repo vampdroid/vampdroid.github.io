@@ -15,37 +15,7 @@ const { title } = Astro.props;
 </Layout>
 
 <style lang="scss">
-	.page-sidebar-col {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-
-		@media (min-width: 768px) {
-			grid-column: span 12 / span 12;
-		}
-
-		@media (min-width: 1024px) {
-			grid-column: span 3 / span 3;
-			position: sticky;
-			top: 3rem;
-			height: calc(100vh - 6rem);
-		}
-	}
-
-	.page-content-col {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		min-width: 0; // Prevent overflow on child flex elements
-
-		@media (min-width: 768px) {
-			grid-column: span 12 / span 12;
-		}
-
-		@media (min-width: 1024px) {
-			grid-column: span 9 / span 9;
-		}
-	}
+	@use "./PageLayout.scss";
 </style>
 
 <style is:global>

@@ -1,15 +1,11 @@
 ---
-import './GridItem.scss';
-const { name, url } = Astro.props;
-
-const tag = url ? 'a' : 'div';
+const { columnSpan = 1 } = Astro.props;
 ---
-{ url ? (
-	<a class="grid-item" style={`grid-area: ${name}`} href={url}>
-	  <slot />
-	</a>
-  ) : (
-	<div class="grid-item" style={`grid-area: ${name}`}>
-	  <slot />
-	</div>
-) }
+
+<div class="grid-item" style={`--column-span: ${columnSpan};`}>
+	<slot />
+</div>
+
+<style lang="scss">
+	@use "./GridItem.scss";
+</style>

@@ -1,0 +1,47 @@
+---
+const { post } = Astro.props;
+
+const defaultImageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuBXpAmZxfj-N05vM-XrhKfgRKoKhHjqRxjlrosX3DIKWBQx0MpIEaBLlzHNF8qR8yWs-4_U8eBSCFrTxM11koP0VlH3SZ90HBT8BRoIA5HeQ7fahcfMKullHfI7tbQeF3TtjwTch63RwJ_nEJ9kwNLuH3H2ZtD31Z1azjUx-UTJEBfnTxukcUOYSZBZUh-HZDeSe07nfoM8s16SxgbWXtJTy37qlm2k_JAVkfB9FBx2CChzYCBvImun-4I1iVbX4eOOz4uJj914tQ4";
+const imageUrl = post.data.image || defaultImageUrl;
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric'
+});
+---
+
+<article class="card featured-blog-card" data-category={post.data.tag.toLowerCase()}>
+	<div class="featured-blog-card__image-container">
+		<img
+			alt="Featured Post"
+			class="featured-blog-card__image"
+			src={imageUrl}
+		/>
+		<div class="featured-blog-card__overlay"></div>
+	</div>
+	<div class="featured-blog-card__content">
+		<div class="post-meta">
+			<span class={`tag tag--${post.data.tagClass}`}>{post.data.tag}</span>
+			<span class="read-time text-muted">
+				<i class="fa-regular fa-clock"></i> {post.data.readTime}
+			</span>
+		</div>
+		<h2 class="featured-blog-card__title font-display">
+			{post.data.title}
+		</h2>
+		<p class="featured-blog-card__description text-muted">
+			{post.data.description}
+		</p>
+		<div class="featured-blog-card__footer">
+			<span class="featured-blog-card__read-more">
+				Read Full Story <i class="fa-solid fa-arrow-right"></i>
+			</span>
+			<span class="post-date text-muted">{formattedDate}</span>
+		</div>
+	</div>
+</article>
+
+<style lang="scss">
+	@use "./FeaturedBlogCard.scss";
+</style>

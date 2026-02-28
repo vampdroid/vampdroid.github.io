@@ -1,8 +1,11 @@
+---
+const { columns = 2 } = Astro.props;
+---
+
+<div class="grid" style={`--grid-cols: ${columns};`}>
+	<slot />
+</div>
 
 <style lang="scss">
 	@use "./Grid.scss";
 </style>
-
-<div class="grid">
-	<slot />
-</div>

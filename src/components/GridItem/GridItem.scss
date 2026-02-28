@@ -1,9 +1,7 @@
 .grid-item {
-	border-radius: 12px;
-	background-color: var(--color-secondary);
+	height: 100%;
 
-	> * {
-		padding: 24px;
-		border-radius: 12px;
+	@media (min-width: 768px) {
+		grid-column: span var(--column-span, 1) / span var(--column-span, 1);
 	}
 }

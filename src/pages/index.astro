@@ -9,26 +9,30 @@ import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
 import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.astro";
 import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
+import Grid from "../components/Grid/Grid.astro";
+import GridItem from "../components/GridItem/GridItem.astro";
+import Socials from "../components/Socials/Socials.astro";
 ---
 
 <Layout title={ SITE_TITLE }>
 	<div class="col-main">
-		<div class="grid-top">
-			<div class="grid-top__left">
+		<Grid columns={3}>
+			<GridItem columnSpan={2}>
 				<Profile
 					title="I'M YASH KUKREJA"
 					description="Software Engineer and Content Creator building for the web."
 					image={ ProfileImagePath }
 				/>
-			</div>
-			<div class="grid-top__right">
+			</GridItem>
+			<GridItem columnSpan={1}>
 				<ChatButton />
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
-		<div class="grid-middle">
-			<Experience
-				title="EXPERIENCE"
+		<Grid columns={2}>
+			<GridItem>
+				<Experience
+					title="EXPERIENCE"
 				experiences={
 					[
 						{
@@ -46,7 +50,9 @@ import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
 					]
 				}
 			/>
+			</GridItem>
 
+			<GridItem>
 			<div class="flex-col-gap">
 				<YoutubeChannel
 					title="HOW'S THE CODE?"
@@ -54,14 +60,15 @@ import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
 					url="https://www.youtube.com/@howsthecode"
 				/>
 
-				<div class="socials-grid">
+				<Socials>
 					<Social link="https://www.linkedin.com/in/yash-kukreja/" icon="fa-linkedin" color="#0077b5" text="LinkedIn" />
 					<Social link="https://github.com/vampdroid" icon="fa-github" color="inherit" text="GitHub" />
 					<Social link="https://x.com/yashskukreja" icon="fa-x-twitter" color="inherit" text="X Profile" />
 					<Social link="https://bsky.app/profile/yashkukreja.bsky.social" icon="fa-bluesky" color="#0085ff" text="Bluesky" />
-				</div>
+				</Socials>
 			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
 		<div class="card project-card">
 			<div>
