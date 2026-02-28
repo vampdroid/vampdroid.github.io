@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Chats from "../components/Chat/Chats.jsx";
 ---
 <Layout title="AI Chat - Yash Kukreja">
-	<div style="grid-column: 1 / -1; display: flex; flex-direction: column; width: 100%;">
+	<div style="grid-column: 1 / -1; display: flex; flex-direction: column; width: 100%;" transition:name="chat-box">
 		<header style="width: 100%; padding: 1rem 0; display: flex; align-items: center; justify-content: space-between; z-index: 10; position: relative;">
 			<a href="/" style="display: flex; align-items: center; gap: 0.5rem; color: var(--color-muted); font-size: 0.875rem; font-weight: 500; transition: color 0.3s; text-decoration: none;">
 				<i class="fa-solid fa-arrow-left" style="font-size: 0.75rem; transition: transform 0.3s;"></i>
