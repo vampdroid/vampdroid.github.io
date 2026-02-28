@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import ProfileImagePath from "../../assets/images/profile.webp";
+
+const pathname = Astro.url.pathname;
+
+const navItems = [
+	{ title: "Home", path: "/", icon: "fa-house", type: "solid" },
+	{ title: "AI Chat", path: "/chat", icon: "fa-robot", type: "solid" },
+	{ title: "Blogs", path: "/blogs", icon: "fa-newspaper", type: "solid" },
+	{ title: "YouTube Videos", path: "/youtube", icon: "fa-youtube", type: "brands" },
+	{ title: "Projects", path: "/projects", icon: "fa-folder", type: "solid" },
+	{ title: "Career Timeline", path: "/career", icon: "fa-briefcase", type: "solid" },
+];
+---
+
+<aside class="sidebar-wrapper">
+	<a href="/" class="card sidebar-profile-card">
+		<div class="sidebar-profile-card__img-wrapper">
+			<div class="sidebar-profile-card__ring">
+				<Image src={ProfileImagePath} alt="Yash Kukreja" class="sidebar-profile-card__img" />
+			</div>
+			<div class="sidebar-profile-card__status"></div>
+		</div>
+		<div class="sidebar-profile-card__info">
+			<h2 class="sidebar-profile-card__name font-display">Yash Kukreja</h2>
+			<p class="sidebar-profile-card__title text-muted">Software Engineer & Content Creator</p>
+		</div>
+	</a>
+
+	{/* Desktop Navigation */}
+	<nav class="card sidebar-nav">
+		{navItems.map(item => {
+			const isActive = pathname === item.path || pathname === item.path + '/';
+			return (
+				<a href={item.path} class={`sidebar-nav__link ${isActive ? 'active' : ''}`}>
+					<i class={`${item.type === 'brands' ? 'fa-brands' : 'fa-solid'} ${item.icon} sidebar-nav__icon`}></i>
+					<span class="sidebar-nav__text">{item.title}</span>
+				</a>
+			);
+		})}
+	</nav>
+
+	{/* Mobile Navigation */}
+	<div class="sidebar-mobile-nav">
+		<a href="/" class="sidebar-mobile-nav__back">
+			<i class="fa-solid fa-arrow-left"></i> Home
+		</a>
+		{navItems.filter(i => i.path !== "/").map(item => {
+			const isActive = pathname === item.path || pathname === item.path + '/';
+			return (
+				<a href={item.path} class={`sidebar-mobile-nav__item ${isActive ? 'active' : ''}`}>
+					{item.title}
+				</a>
+			);
+		})}
+	</div>
+
+	{/* Theme Switcher inside sidebar for desktop */}
+	<div class="sidebar-theme">
+		<button class="sidebar-theme__btn theme-toggle-btn-sidebar" aria-label="Toggle Dark Mode">
+			<i class="fa-solid fa-moon dark-hidden"></i>
+			<i class="fa-solid fa-sun dark-block text-yellow"></i>
+			<span class="sidebar-theme__text">Switch Theme</span>
+		</button>
+	</div>
+</aside>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const btn = document.querySelector('.theme-toggle-btn-sidebar');
+		if (btn) {
+			btn.addEventListener('click', () => {
+				document.documentElement.classList.toggle('dark');
+				localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+			});
+		}
+	});
+</script>
+
+<style lang="scss">
+	@use "./Sidebar.scss";
+</style>

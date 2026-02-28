@@ -1,3 +1,4 @@
+import React from 'react';
 import './chat.scss';
 import ChatBox from './ChatBox';
 import { useState, useRef, useEffect } from 'react';

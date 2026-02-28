@@ -1,3 +1,4 @@
+import React from 'react';
 import './chat.scss';
 import { useEffect, useRef } from 'react';
 
