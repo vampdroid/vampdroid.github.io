@@ -1,10 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Chats from "../components/Chat/Chats.jsx";
+import PageLayout from "../layouts/PageLayout.astro";
+import Chat from "../components/Chat/Chat.jsx";
 ---
-<Layout title="Chat">
-	<h1>Chat with my AI bot</h1>
-	<div class="chat">
-		<Chats client:only="react" />
+
+<PageLayout title="AI Chat - Yash Kukreja">
+	<div class="chat-page-container" transition:name="chat-box">
+		<Chat client:load />
 	</div>
-</Layout>
+</PageLayout>
+
+<style lang="scss">
+	@use "./_chat.scss";
+</style>

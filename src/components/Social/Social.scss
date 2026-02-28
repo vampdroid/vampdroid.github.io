@@ -1,0 +1,31 @@
+.social {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-sm);
+	transition: var(--transition-base);
+	text-decoration: none;
+	height: 100%;
+
+	&:hover {
+		background-color: var(--color-card-hover);
+
+		.social__icon {
+			transform: scale(1.1);
+		}
+	}
+
+	&__icon {
+		font-size: var(--font-size-3xl);
+		transition: var(--transition-transform);
+		color: var(--color-text);
+	}
+
+	&__text {
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-medium);
+		margin-top: var(--spacing-xs);
+		color: var(--color-text);
+	}
+}

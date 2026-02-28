@@ -1,0 +1,100 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import FeaturedBlogCard from "../../components/FeaturedBlogCard/FeaturedBlogCard.astro";
+import BlogCard from "../../components/BlogCard/BlogCard.astro";
+import BlogFilters from "../../components/BlogFilters/BlogFilters.astro";
+import BlogPagination from "../../components/BlogPagination/BlogPagination.astro";
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection("blog");
+	const POSTS_PER_PAGE = 2; // Matches previous logic
+
+	const sortedPosts = allPosts.sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+	);
+
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tag?.toLowerCase()))].filter(Boolean);
+	const filters = ["all", ...uniqueTags];
+
+	const paths = [];
+
+	for (const filter of filters) {
+		const filteredPosts = filter === "all" 
+			? sortedPosts 
+			: sortedPosts.filter(post => post.data.tag?.toLowerCase() === filter);
+
+		// Handle featured post for page 1
+		const featuredPost = filteredPosts[0];
+		const remainingPosts = filteredPosts.slice(1);
+		
+		const totalPages = Math.ceil(remainingPosts.length / POSTS_PER_PAGE);
+		
+		// Map for each page
+		for (let i = 1; i <= Math.max(1, totalPages); i++) {
+			const start = (i - 1) * POSTS_PER_PAGE;
+			const end = start + POSTS_PER_PAGE;
+			const paginatedPosts = remainingPosts.slice(start, end);
+
+			// Slug logic:
+			// /blogs -> undefined
+			// /blogs/2 -> "2"
+			// /blogs/tag -> "tag"
+			// /blogs/tag/2 -> "tag/2"
+			
+			let slug = undefined;
+			if (filter === "all") {
+				if (i > 1) slug = i.toString();
+			} else {
+				slug = i === 1 ? filter : `${filter}/${i}`;
+			}
+
+			paths.push({
+				params: { slug },
+				props: {
+					posts: paginatedPosts,
+					featuredPost: i === 1 ? featuredPost : null,
+					currentPage: i,
+					totalPages,
+					currentTag: filter,
+					tags: [...new Set(sortedPosts.map(p => p.data.tag))].filter(Boolean).sort()
+				}
+			});
+		}
+	}
+
+	return paths;
+}
+
+const { posts, featuredPost, currentPage, totalPages, currentTag, tags = [] } = Astro.props;
+---
+
+<PageLayout title="Blog - Yash Kukreja">
+	<div class="blog-header">
+		<div class="blog-header__info">
+			<h1 class="blog-header__title font-display">Writing</h1>
+			<p class="blog-header__description text-muted">
+				Thoughts on software engineering, product development, and career growth.
+			</p>
+		</div>
+		<BlogFilters tags={tags} activeTag={currentTag} />
+	</div>
+
+	{featuredPost && <FeaturedBlogCard post={featuredPost} />}
+
+	<div class="posts-grid">
+		{posts.map((post) => (
+			<BlogCard post={post} />
+		))}
+	</div>
+
+	<BlogPagination 
+		currentPage={currentPage} 
+		totalPages={totalPages} 
+		currentTag={currentTag} 
+	/>
+</PageLayout>
+
+<style lang="scss">
+	@use "../_blogs.scss";
+</style>

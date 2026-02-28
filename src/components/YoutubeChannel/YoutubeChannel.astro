@@ -1,41 +1,19 @@
 ---
-import Image from 'astro/components/Image.astro';
-import YoutubeImagePath from '/src/assets/images/YT.png';
-const { title, description } = Astro.props;
+const { title, description, url } = Astro.props;
 ---
-<div class="youtube-channel">
-	<div class="youtube-channel__logo">
-		<Image
-			class="youtube-channel__image"
-			src={ YoutubeImagePath }
-			alt="Youtube Channel"
-		/>
-		<strong class="youtube-channel__label">Youtube</strong>
+
+<div class="card youtube-channel">
+	<div class="youtube-channel__header">
+		<i class="fa-brands fa-youtube youtube-channel__icon"></i>
+		<span class="youtube-channel__badge">Youtube</span>
 	</div>
-	<h3 class="youtube-channel__title">{ title }</h3>
-	<p>{ description }</p>
+	<h3 class="font-display youtube-channel__title">{title}</h3>
+	<p class="text-muted youtube-channel__description">{description}</p>
+	<a class="youtube-channel__visit-link" href={url} target="_blank" rel="noopener noreferrer">
+		Visit Channel <i class="fa-solid fa-arrow-right youtube-channel__link-arrow"></i>
+	</a>
 </div>
 
-
-<style>
-	.youtube-channel a {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
-
-	.youtube-channel__label {
-		display: block;
-	}
-
-	.youtube-channel__title {
-		margin-bottom: 0;
-	}
-
-	.youtube-channel__image {
-		width: 60px;
-		height: auto;
-		border-radius: 12px;
-		margin-bottom: 16px;
-	}
+<style lang="scss">
+	@use "./YoutubeChannel.scss";
 </style>

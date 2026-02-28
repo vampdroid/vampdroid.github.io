@@ -1,34 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import Grid from "../components/Grid/Grid.astro";
-import GridItem from "../components/GridItem/GridItem.astro";
 import Profile from "../components/Profile/Profile.astro";
 import Experience from "../components/Experience/Experience.astro";
 import ProfileImagePath from "../assets/images/profile.webp";
-import LinkedInProfilePath from "../assets/images/linkedin.png";
-import GithubImagePath from "../assets/images/github.png";
 import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
 import Social from "../components/Social/Social.astro";
 import ChatButton from "../components/Chat/ChatButton.astro";
 import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.astro";
 import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
-import XImagePath from "../assets/images/x.png";
-import BlueSkyImagePath from "../assets/images/bluesky.png";
+import Grid from "../components/Grid/Grid.astro";
+import GridItem from "../components/GridItem/GridItem.astro";
+import Socials from "../components/Socials/Socials.astro";
 ---
 
 <Layout title={ SITE_TITLE }>
-	<Grid>
-		<GridItem name="p-info">
-			<Profile
-				title="I'm Yash Kukreja"
-				description="Software Engineer and Content Creator."
-				image={ ProfileImagePath }
-			/>
-		</GridItem>
-		<GridItem name="p-expn">
-			<Experience
-				title="Experience"
+	<div class="col-main">
+		<Grid columns={3}>
+			<GridItem columnSpan={2}>
+				<Profile
+					title="I'M YASH KUKREJA"
+					description="Software Engineer and Content Creator building for the web."
+					image={ ProfileImagePath }
+				/>
+			</GridItem>
+			<GridItem columnSpan={1}>
+				<ChatButton />
+			</GridItem>
+		</Grid>
+
+		<Grid columns={2}>
+			<GridItem>
+				<Experience
+					title="EXPERIENCE"
 				experiences={
 					[
 						{
@@ -36,67 +40,64 @@ import BlueSkyImagePath from "../assets/images/bluesky.png";
 							role: "Software Engineer",
 							duration: "2023 - Present",
 							description: ["Worked with a leading enterprise travel company to craft and enhance their user-facing website.","Technologies: WordPress & Gutenberg, TypeScript, SCSS and Blade."],
-							technologies: ["WordPress & Gutenberg", "TypeScript", "SCSS", "Blade"]
 						},
 						{
-							company: "Youtube",
+							company: "How's The Code",
 							role: "Content Creation",
-							duration: "2020 - 2022 -- Break -- 2025 - Present",
+							duration: "2020 - Present",
 							description: ["Creating content around Software Engineering, Web Development, and Tech."],
-							technologies: ["Video Production", "Content Strategy"]
 						}
 					]
 				}
 			/>
-		</GridItem>
-		<GridItem name="yt-cnt">
-			<h3>Latest Youtube Content</h3>
+			</GridItem>
+
+			<GridItem>
+			<div class="flex-col-gap">
+				<YoutubeChannel
+					title="HOW'S THE CODE?"
+					description="I create content around Software Engineering, Web Development, and Tech!"
+					url="https://www.youtube.com/@howsthecode"
+				/>
+
+				<Socials>
+					<Social link="https://www.linkedin.com/in/yash-kukreja/" icon="fa-linkedin" color="#0077b5" text="LinkedIn" />
+					<Social link="https://github.com/vampdroid" icon="fa-github" color="inherit" text="GitHub" />
+					<Social link="https://x.com/yashskukreja" icon="fa-x-twitter" color="inherit" text="X Profile" />
+					<Social link="https://bsky.app/profile/yashkukreja.bsky.social" icon="fa-bluesky" color="#0085ff" text="Bluesky" />
+				</Socials>
+			</div>
+			</GridItem>
+		</Grid>
+
+		<div class="card project-card">
+			<div>
+				<h2 class="font-display project-card__title">
+					<i class="fa-solid fa-code text-primary icon-small"></i> PERSONAL PROJECT
+				</h2>
+			</div>
+			<div class="project-card__loader-container">
+				<div class="project-card__loader-bar">
+					<div class="project-card__loader-fill"></div>
+				</div>
+				<p class="text-muted project-card__text">Layout in Progress...</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sidebar">
+		<div class="sidebar-section">
+			<h2 class="sidebar-section__title">Latest Youtube Content</h2>
 			<YoutubeVideos />
-		</GridItem>
-		<GridItem name="yt-chn" url="https://www.youtube.com/@howsthecode">
-			<YoutubeChannel
-				title="How's the Code?"
-				description="I create content around Software Engineering, Web Development, and Tech!"
-			/>
-		</GridItem>
-		<GridItem name="ai-cht" url="/chat">
-			<ChatButton />
-		</GridItem>
-		<GridItem name="bl-cnt">
-			<h3>Blog Content</h3>
+		</div>
+		
+		<div class="sidebar-section">
+			<h2 class="sidebar-section__title">Blog Content</h2>
 			<RecentBlogs />
-		</GridItem>
-		<GridItem name="p-proj">
-			<h3>Personal Project</h3>
-			<p>Layout in Progress</p>
-		</GridItem>
-		<GridItem name="p-lkdn">
-			<Social
-				link="https://www.linkedin.com/in/yash-kukreja/"
-				image={ LinkedInProfilePath }
-				text="Follow me on LinkedIn"
-			/>
-		</GridItem>
-		<GridItem name="p-gthb">
-			<Social
-				link="https://github.com/vampdroid"
-				image={ GithubImagePath }
-				text="Checkout my Github"
-			/>
-		</GridItem>
-		<GridItem name="p-xcom">
-			<Social
-				link="https://x.com/yashskukreja"
-				image={ XImagePath }
-				text="X Profile"
-			/>
-		</GridItem>
-		<GridItem name="p-bsky">
-			<Social
-				link="https://bsky.app/profile/yashkukreja.bsky.social"
-				image={ BlueSkyImagePath }
-				text="Bluesky"
-			/>
-		</GridItem>
-	</Grid>
+		</div>
+	</div>
 </Layout>
+
+<style lang="scss">
+	@use "./_index.scss";
+</style>

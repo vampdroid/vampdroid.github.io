@@ -1,0 +1,49 @@
+---
+const { currentPage, totalPages, currentTag } = Astro.props;
+
+const getPageUrl = (page) => {
+	const base = currentTag === "all" ? "/blogs" : `/blogs/${currentTag.toLowerCase()}`;
+	if (page === 1) return base;
+	return `${base}/${page}`;
+};
+---
+
+<div class="blog-pagination-container">
+	{totalPages > 1 && (
+		<nav class="blog-pagination">
+			<a 
+				href={currentPage > 1 ? getPageUrl(currentPage - 1) : "#"} 
+				class="blog-pagination__button"
+				aria-label="Previous Page"
+				style={currentPage === 1 ? "opacity: 0.5; pointer-events: none;" : ""}
+			>
+				<i class="fa-solid fa-arrow-left"></i>
+			</a>
+
+			{[...Array(totalPages)].map((_, i) => {
+				const page = i + 1;
+				return (
+					<a 
+						href={getPageUrl(page)} 
+						class={`blog-pagination__button ${currentPage === page ? "blog-pagination__button--active" : ""}`}
+					>
+						{page}
+					</a>
+				);
+			})}
+
+			<a 
+				href={currentPage < totalPages ? getPageUrl(currentPage + 1) : "#"} 
+				class="blog-pagination__button"
+				aria-label="Next Page"
+				style={currentPage === totalPages ? "opacity: 0.5; pointer-events: none;" : ""}
+			>
+				<i class="fa-solid fa-arrow-right"></i>
+			</a>
+		</nav>
+	)}
+</div>
+
+<style is:global lang="scss">
+	@use "./BlogPagination.scss";
+</style>

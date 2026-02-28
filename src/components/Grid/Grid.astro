@@ -1,24 +1,11 @@
+---
+const { columns = 2 } = Astro.props;
+---
 
-<style>
-	.grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 24px;
-		grid-template-areas: var(--grid-area-mobile);
-	
-		@media (min-width: 768px) {
-			grid-template-areas: var(--grid-area-tablet);
-			grid-template-columns: repeat(4, 1fr);
-		}
-
-		@media (min-width: 1024px) {
-			grid-template-areas: var(--grid-area-desktop);
-			grid-template-columns: repeat(6, 1fr);
-		}
-	}
-
-</style>
-
-<div class="grid">
+<div class="grid" style={`--grid-cols: ${columns};`}>
 	<slot />
 </div>
+
+<style lang="scss">
+	@use "./Grid.scss";
+</style>

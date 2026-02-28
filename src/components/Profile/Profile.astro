@@ -1,46 +1,23 @@
 ---
 import Image from "astro/components/Image.astro";
-
-const { title, highlight, description, image } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
-<div class="profile">
-	<Image class="profile__image" src={ image } alt={ title } />
+<div class="card profile">
+	<div class="profile__image-wrapper">
+		<div class="profile__image-ring">
+			<Image class="profile__image" src={image} alt={title} />
+		</div>
+		<div class="profile__status-dot"></div>
+	</div>
 	<div class="profile__content">
-		<h1 class="profile__title">{ title }</h1>
-		<p class="profile__description">{ description }</p>
+		<h1 class="font-display profile__title">{title}</h1>
+		<p class="text-muted profile__description">
+			{description}
+		</p>
 	</div>
 </div>
 
-<style>
-	.profile {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: var(--col-gutter);
-		height: 100%;
-
-		@media screen and (min-width: 768px) {
-			flex-direction: row;
-		}
-	}
-
-	.profile__image {
-		aspect-ratio: 1 / 1;
-		height: 100px;
-		width: auto;
-		border-radius: 50%;
-	}
-
-	.profile__description {
-		margin: 0;
-	}
-
-	@media screen and (min-width: 768px) {
-		.profile__image {
-			height: 150px;
-		}
-		
-	}
+<style lang="scss">
+	@use "./Profile.scss";
 </style>
-	

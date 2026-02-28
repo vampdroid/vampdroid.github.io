@@ -1,0 +1,32 @@
+---
+const { post } = Astro.props;
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric'
+});
+---
+
+<article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
+	<div class="post-meta">
+		<span class={`tag tag--${post.data.tagClass}`}>{post.data.tag}</span>
+		<span class="post-date text-muted">{formattedDate}</span>
+	</div>
+	<h3 class="blog-card__title font-display">
+		{post.data.title}
+	</h3>
+	<p class="blog-card__description text-muted">
+		{post.data.description}
+	</p>
+	<div class="blog-card__footer">
+		<span class="read-time text-muted">
+			<i class="fa-regular fa-clock"></i> {post.data.readTime}
+		</span>
+		<span class="blog-card__read-more">Read More</span>
+	</div>
+</article>
+
+<style lang="scss">
+	@use "./BlogCard.scss";
+</style>

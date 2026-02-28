@@ -1,0 +1,169 @@
+.featured-blog-card {
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 0;
+	cursor: pointer;
+
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	&__image-container {
+		height: 256px;
+		position: relative;
+		overflow: hidden;
+
+		@media (min-width: 768px) {
+			height: auto;
+		}
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+
+		@media (min-width: 768px) {
+			display: none;
+		}
+	}
+
+	&__content {
+		padding: var(--spacing-xl);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: var(--spacing-base);
+		position: relative;
+
+		.post-meta {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		/* Tag styles */
+		.tag {
+			padding: 4px 12px;
+			border-radius: 9999px;
+			font-size: 12px;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			white-space: nowrap;
+
+			&--tag-career {
+				background-color: rgba(19, 91, 236, 0.1);
+				color: var(--color-primary);
+			}
+
+			&--tag-tech {
+				background-color: rgba(37, 99, 235, 0.1);
+				color: #2563eb;
+
+				html.dark & {
+					background-color: rgba(59, 130, 246, 0.2);
+					color: #60a5fa;
+				}
+			}
+
+			&--tag-productivity {
+				background-color: rgba(147, 51, 234, 0.1);
+				color: #9333ea;
+
+				html.dark & {
+					background-color: rgba(168, 85, 247, 0.2);
+					color: #c084fc;
+				}
+			}
+
+			&--tag-tutorial {
+				background-color: rgba(22, 163, 74, 0.1);
+				color: #16a34a;
+
+				html.dark & {
+					background-color: rgba(34, 197, 94, 0.2);
+					color: #4ade80;
+				}
+			}
+
+			&--tag-design {
+				background-color: rgba(234, 88, 12, 0.1);
+				color: #ea580c;
+
+				html.dark & {
+					background-color: rgba(249, 115, 22, 0.2);
+					color: #fb923c;
+				}
+			}
+
+			&--tag-system-design {
+				background-color: rgba(219, 39, 119, 0.1);
+				color: #db2777;
+
+				html.dark & {
+					background-color: rgba(236, 72, 153, 0.2);
+					color: #f472b6;
+				}
+			}
+		}
+
+		@media (min-width: 768px) {
+			padding: var(--spacing-2xl);
+		}
+	}
+
+	&__title {
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-bold);
+		transition: var(--transition-base);
+
+		@media (min-width: 768px) {
+			font-size: var(--font-size-3xl);
+		}
+	}
+
+	&__description {
+		line-height: 1.625;
+		margin-bottom: var(--spacing-base);
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-base);
+		margin-top: auto;
+	}
+
+	/* Hover effects */
+	&:hover {
+		.featured-blog-card__image {
+			transform: scale(1.05);
+		}
+
+		.featured-blog-card__title {
+			color: var(--color-primary);
+		}
+
+		.featured-blog-card__read-more {
+			transform: translateX(var(--spacing-xs));
+		}
+	}
+}
+
+.featured-blog-card__read-more {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--color-primary);
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	transition: transform 0.3s;
+}
