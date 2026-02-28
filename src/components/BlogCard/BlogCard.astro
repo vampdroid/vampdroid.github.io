@@ -8,7 +8,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<article class="card blog-card" data-category={post.data.tag.toLowerCase()}>
+<article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
 	<div class="post-meta">
 		<span class={`tag tag--${post.data.tagClass}`}>{post.data.tag}</span>
 		<span class="post-date text-muted">{formattedDate}</span>

@@ -11,7 +11,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<article class="card featured-blog-card" data-category={post.data.tag.toLowerCase()}>
+<article class="card featured-blog-card" data-category={post.data.tag?.toLowerCase()}>
 	<div class="featured-blog-card__image-container">
 		<img
 			alt="Featured Post"

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 	);
 
-	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tag.toLowerCase()))];
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tag?.toLowerCase()))].filter(Boolean);
 	const filters = ["all", ...uniqueTags];
 
 	const paths = [];
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 	for (const filter of filters) {
 		const filteredPosts = filter === "all" 
 			? sortedPosts 
-			: sortedPosts.filter(post => post.data.tag.toLowerCase() === filter);
+			: sortedPosts.filter(post => post.data.tag?.toLowerCase() === filter);
 
 		// Handle featured post for page 1
 		const featuredPost = filteredPosts[0];
@@ -57,7 +57,7 @@ export async function getStaticPaths() {
 					currentPage: i,
 					totalPages,
 					currentTag: filter,
-					tags: [...new Set(sortedPosts.map(p => p.data.tag))].sort()
+					tags: [...new Set(sortedPosts.map(p => p.data.tag))].filter(Boolean).sort()
 				}
 			});
 		}
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
 	return paths;
 }
 
-const { posts, featuredPost, currentPage, totalPages, currentTag, tags } = Astro.props;
+const { posts, featuredPost, currentPage, totalPages, currentTag, tags = [] } = Astro.props;
 ---
 
 <PageLayout title="Blog - Yash Kukreja">
