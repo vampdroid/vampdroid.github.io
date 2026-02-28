@@ -1,12 +1,12 @@
 .youtube-videos {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: var(--spacing-base);
 
 	&__item {
 		display: flex;
 		flex-direction: row;
-		gap: 16px;
+		gap: var(--spacing-base);
 		text-decoration: none;
 		align-items: center;
 
@@ -31,7 +31,7 @@
 		width: 96px;
 		height: 96px;
 		flex-shrink: 0;
-		border-radius: 8px;
+		border-radius: var(--radius-md);
 		overflow: hidden;
 		position: relative;
 		background-color: var(--color-border);
@@ -41,14 +41,14 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 0.5s;
+		transition: var(--transition-slow);
 	}
 
 	&__overlay {
 		position: absolute;
 		inset: 0;
 		background-color: rgba(0, 0, 0, 0.2);
-		transition: background-color 0.3s;
+		transition: var(--transition-base);
 	}
 
 	&__info {
@@ -58,11 +58,11 @@
 	}
 
 	&__title {
-		font-weight: 500;
-		font-size: 14px;
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-sm);
 		line-height: 1.375;
-		margin-bottom: 8px;
-		transition: color 0.3s;
+		margin-bottom: var(--spacing-sm);
+		transition: var(--transition-base);
 		color: var(--color-text);
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
@@ -72,7 +72,7 @@
 	}
 
 	&__meta {
-		font-size: 12px;
+		font-size: var(--font-size-xs);
 		color: var(--color-muted);
 	}
 }
