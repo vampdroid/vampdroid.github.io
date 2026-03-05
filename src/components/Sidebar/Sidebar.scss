@@ -116,7 +116,7 @@
 			}
 		}
 
-		&.active {
+		&--active {
 			background-color: rgba(19, 91, 236, 0.1);
 			color: var(--color-primary);
 			font-weight: 700;
@@ -182,13 +182,13 @@
 		font-weight: var(--font-weight-medium);
 		transition: var(--transition-base);
 
-		&.active {
+		&--active {
 			background-color: var(--color-primary);
 			color: var(--color-white);
 			border-color: var(--color-primary);
 		}
 
-		&:not(.active):hover {
+		&:not(&--active):hover {
 			background-color: rgba(0, 0, 0, 0.03);
 
 			html.dark & {
@@ -246,7 +246,7 @@
 	transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 	pointer-events: none;
 
-	&.visible {
+	&--visible {
 		opacity: 1;
 		transform: translateX(0);
 		pointer-events: auto;

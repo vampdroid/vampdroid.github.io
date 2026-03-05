@@ -37,14 +37,14 @@ const { title } = Astro.props;
 		<slot />
 	</main>
 	<div class="theme-toggle">
-		<button class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+		<button class="theme-toggle__btn" aria-label="Toggle Dark Mode">
 			<i class="fa-solid fa-moon dark-hidden"></i>
 			<i class="fa-solid fa-sun dark-block"></i>
 		</button>
 	</div>
 	<script>
 		document.addEventListener('astro:page-load', () => {
-			const themeToggleButton = document.querySelector('.theme-toggle-btn');
+			const themeToggleButton = document.querySelector('.theme-toggle__btn');
 
 			themeToggleButton?.addEventListener('click', () => {
 				document.documentElement.classList.toggle('dark');

@@ -9,9 +9,9 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 ---
 
 <article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
-	<div class="post-meta">
-		<span class={`tag tag--${post.data.tagClass}`}>{post.data.tag}</span>
-		<span class="post-date text-muted">{formattedDate}</span>
+	<div class="blog-meta">
+		<span class={`blog-tag blog-tag--${post.data.tagClass.replace('tag-', '')}`}>{post.data.tag}</span>
+		<span class="blog-meta__date text-muted">{formattedDate}</span>
 	</div>
 	<h3 class="blog-card__title font-display">
 		{post.data.title}
@@ -20,7 +20,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 		{post.data.description}
 	</p>
 	<div class="blog-card__footer">
-		<span class="read-time text-muted">
+		<span class="blog-meta__read-time text-muted">
 			<i class="fa-regular fa-clock"></i> {post.data.readTime}
 		</span>
 		<span class="blog-card__read-more">Read More</span>

@@ -6,10 +6,10 @@ const { title } = Astro.props;
 ---
 
 <Layout title={title}>
-	<div class="page-sidebar-col">
+	<div class="page-layout__sidebar">
 		<Sidebar />
 	</div>
-	<div class="page-content-col">
+	<div class="page-layout__content">
 		<slot />
 	</div>
 </Layout>
@@ -21,8 +21,8 @@ const { title } = Astro.props;
 <style is:global>
 	/* Hide the floating theme toggle on pages with a sidebar because the sidebar has one */
 	@media (min-width: 1024px) {
-		.page-sidebar-col ~ .theme-toggle,
-		body:has(.page-sidebar-col) .theme-toggle {
+		.page-layout__sidebar ~ .theme-toggle,
+		body:has(.page-layout__sidebar) .theme-toggle {
 			display: none;
 		}
 	}

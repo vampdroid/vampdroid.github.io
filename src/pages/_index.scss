@@ -1,4 +1,4 @@
-.flex-col-gap {
+.home-stack {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
@@ -35,6 +35,10 @@
 		color: var(--color-text);
 	}
 
+	&__icon {
+		font-size: 14px;
+	}
+
 	&__loader-container {
 		margin-top: 16px;
 	}
@@ -59,10 +63,6 @@
 		margin-top: 8px;
 		font-family: monospace;
 	}
-}
-
-.icon-small {
-	font-size: 14px;
 }
 
 @keyframes pulse {
