@@ -27,7 +27,7 @@ const ChatMessage = ({ sender, text }) => {
 			<div className={`chat-message__body chat-message__body--${variant}`}>
 				<span className="chat-message__sender">{senderLabel}</span>
 				<div className={`chat-message__bubble chat-message__bubble--${variant}`}>
-					<p>{text}</p>
+					<p style={{ whiteSpace: 'pre-wrap' }}>{text}</p>
 				</div>
 			</div>
 		</div>
@@ -139,8 +139,9 @@ export default function Chat() {
 
 		if (userMessageText) {
 			inputElement.innerText = '';
-			inputElement.blur();
+			// On mobile, blurring helps hide the keyboard, but we should do it after state update
 			sendMessageToAi(userMessageText);
+			inputElement.blur();
 		}
 	};
 
@@ -194,6 +195,7 @@ export default function Chat() {
 						placeholder="Type your message..."
 						onKeyDown={handleKeyDown}
 						onBlur={handleInputBlur}
+						enterKeyHint="send"
 					></div>
 					<button
 						className="chat-submit-button"
