@@ -22,7 +22,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 	</div>
 	<div class="featured-blog-card__content">
 		<div class="blog-meta">
-			<span class={`blog-tag blog-tag--${post.data.tagClass.replace('tag-', '')}`}>{post.data.tag}</span>
+			<span class={`blog-tag blog-tag--${(post.data.tagClass || 'tag-uncategorized').replace('tag-', '')}`}>{post.data.tag}</span>
 			<span class="blog-meta__read-time text-muted">
 				<i class="fa-regular fa-clock"></i> {post.data.readTime}
 			</span>
