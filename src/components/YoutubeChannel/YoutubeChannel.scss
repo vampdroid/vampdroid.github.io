@@ -1,0 +1,56 @@
+.youtube-channel {
+	display: flex;
+	flex-direction: column;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	&__icon {
+		color: #ef4444;
+		font-size: 30px;
+	}
+
+	&__badge {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-muted);
+	}
+
+	&__title {
+		font-size: 24px;
+		font-weight: 700;
+		margin-bottom: 8px;
+		color: var(--color-text);
+	}
+
+	&__description {
+		font-size: 14px;
+		line-height: 1.625;
+		margin-bottom: 16px;
+	}
+
+	&__visit-link {
+		display: inline-flex;
+		align-items: center;
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--color-primary);
+		transition: opacity 0.3s;
+		text-decoration: none;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	&__link-arrow {
+		margin-left: 8px;
+		font-size: 12px;
+	}
+}

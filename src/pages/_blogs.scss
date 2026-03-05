@@ -1,0 +1,42 @@
+.blog-header {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: space-between;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__title {
+		font-size: 36px;
+		font-weight: 800;
+		letter-spacing: -0.025em;
+
+		@media (min-width: 768px) {
+			font-size: 48px;
+		}
+	}
+
+	&__description {
+		font-size: 18px;
+		max-width: 576px;
+	}
+}
+
+.posts-grid {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 24px;
+
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}

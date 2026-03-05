@@ -1,9 +1,13 @@
 ---
-import chatIcon from "../../assets/images/chat.png";
-import { Image } from "astro:assets";
-import "./chat.scss";
 ---
-<div class="chat-button">
-	<Image src={chatIcon} alt="Chat icon" class="chat-button__icon" />
-	<p class="chat-button__description">Chat with my AI assistant!</p>
-</div>
+
+<a href="/chat" class="card chat-card" transition:name="chat-box">
+	<div class="chat-card__icon-container">
+		<i class="fa-solid fa-robot chat-card__icon"></i>
+	</div>
+	<p class="chat-card__text">Chat with my AI assistant!</p>
+</a>
+
+<style lang="scss">
+	@use "./ChatButton.scss";
+</style>

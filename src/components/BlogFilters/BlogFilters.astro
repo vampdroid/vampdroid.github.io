@@ -1,0 +1,27 @@
+---
+const { tags, activeTag = "all" } = Astro.props;
+---
+
+<div class="blog-filters">
+	<a 
+		href="/blogs" 
+		class={`blog-filters__button ${activeTag === "all" ? "blog-filters__button--active" : ""}`}
+	>
+		All
+	</a>
+	{tags.filter(Boolean).map((tag: string) => {
+		const isActive = (activeTag || "all").toLowerCase() === tag.toLowerCase();
+		return (
+			<a 
+				href={`/blogs/${tag.toLowerCase()}`} 
+				class={`blog-filters__button ${isActive ? "blog-filters__button--active" : ""}`}
+			>
+				{tag}
+			</a>
+		);
+	})}
+</div>
+
+<style lang="scss">
+	@use "./BlogFilters.scss";
+</style>

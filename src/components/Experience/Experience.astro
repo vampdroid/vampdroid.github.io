@@ -1,21 +1,30 @@
 ---
-import './Experience.scss';
 const { title, experiences } = Astro.props;
 ---
-<div class="experience">
-	<h2>{title}</h2>
-	{
-		experiences?.map((experience: any) => (
+<div class="card experience">
+	<h2 class="font-display experience__title">
+		<i class="fa-solid fa-briefcase text-primary experience__icon"></i> {title}
+	</h2>
+	
+	<div class="experience__timeline">
+		{experiences?.map((experience: any, index: number) => (
 			<div class="experience__item">
-				<strong>{experience.company}</strong> 
-				<em>{experience.role}</em>
-				{experience.duration}
-				<ul>
+				<span class={`experience__dot ${index === 0 ? 'experience__dot--primary' : 'experience__dot--secondary'}`}></span>
+				<div class="experience__header">
+					<h3 class="experience__company">{experience.company}</h3>
+					<p class="experience__role">{experience.role}</p>
+				</div>
+				<p class="experience__duration">{experience.duration}</p>
+				<ul class="experience__description">
 					{experience.description.map((desc:string) => (
-						<li><p>{desc}</p></li>
+						<li>{desc}</li>
 					))}
 				</ul>
 			</div>
-		))
-	}
+		))}
+	</div>
 </div>
+
+<style lang="scss">
+	@use "./Experience.scss";
+</style>

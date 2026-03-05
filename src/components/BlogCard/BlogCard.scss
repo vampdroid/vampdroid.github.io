@@ -1,0 +1,40 @@
+.blog-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	cursor: pointer;
+
+	&__title {
+		font-size: 20px;
+		font-weight: 700;
+		margin-bottom: 12px;
+		line-height: 1.375;
+		transition: color 0.3s;
+	}
+
+	&__description {
+		font-size: 14px;
+		line-height: 1.625;
+		margin-bottom: 24px;
+		flex-grow: 1;
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__read-more {
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	/* Hover effects */
+	&:hover {
+		.blog-card__title {
+			color: var(--color-primary);
+		}
+	}
+}

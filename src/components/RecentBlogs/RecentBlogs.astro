@@ -1,10 +1,9 @@
 ---
 import { fetchRecentBlogs } from '../../services/blogs';
-import './recent-blogs.scss';
 
 const posts = await fetchRecentBlogs(3);
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -14,21 +13,22 @@ const formatDate = (dateString) => {
 ---
 
 <div class='recent-blogs'>
-  <ul class='recent-blogs__list'>
-    {posts && posts.length > 0 ? (
-      posts.map(post => (
-        <li class='recent-blogs__post'>
-          <a href={`/blog/${post.slug}`}>
-            <div class="post-info">
-              <span class="post-date">{formatDate(post.date)}</span>
-              <h4 class="post-title">{post.title}</h4>
-              <div class="post-excerpt" set:html={post.excerpt} />
-            </div>
-          </a>
-        </li>
-      ))
-    ) : (
-      <li class="no-blogs">No blogs yet! Stay tuned.</li>
-    )}
-  </ul>
+	{posts && posts.length > 0 ? (
+		posts.map((post: any) => (
+			<a class="card recent-blogs__item group" href={`/posts/${post.slug}`}>
+				<p class="recent-blogs__date">{formatDate(post.date)}</p>
+				<h3 class="font-display recent-blogs__title" set:html={post.title}></h3>
+				<div class="recent-blogs__excerpt text-muted" set:html={post.excerpt}></div>
+				<div class="recent-blogs__read-more">
+					Read Article <i class="fa-solid fa-arrow-right recent-blogs__icon-arrow"></i>
+				</div>
+			</a>
+		))
+	) : (
+		<p class="text-muted">No blog posts available at the moment.</p>
+	)}
 </div>
+
+<style lang="scss">
+	@use "./RecentBlogs.scss";
+</style>

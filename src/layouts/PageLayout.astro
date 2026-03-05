@@ -1,0 +1,29 @@
+---
+import Layout from "./Layout.astro";
+import Sidebar from "../components/Sidebar/Sidebar.astro";
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+	<div class="page-layout__sidebar">
+		<Sidebar />
+	</div>
+	<div class="page-layout__content">
+		<slot />
+	</div>
+</Layout>
+
+<style lang="scss">
+	@use "./PageLayout.scss";
+</style>
+
+<style is:global>
+	/* Hide the floating theme toggle on pages with a sidebar because the sidebar has one */
+	@media (min-width: 1024px) {
+		.page-layout__sidebar ~ .theme-toggle,
+		body:has(.page-layout__sidebar) .theme-toggle {
+			display: none;
+		}
+	}
+</style>
