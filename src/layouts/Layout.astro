@@ -1,9 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import "../styles/global.scss";
-const { title } = Astro.props;
+const { title, isHome = false } = Astro.props;
 ---
-<html lang="en">
+<html lang="en" class={isHome ? 'page-home' : 'page-other'}>
   <head>
 	<ViewTransitions />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg">

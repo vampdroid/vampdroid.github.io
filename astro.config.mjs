@@ -6,5 +6,6 @@ import react from '@astrojs/react';
 
 export default defineConfig({
     site: 'https://yashkukreja.com',
+    prefetch: true,
     integrations: [mdx(), sitemap(), react()],
 });
