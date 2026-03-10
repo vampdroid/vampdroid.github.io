@@ -1,10 +1,13 @@
 ---
-import { fetchRecentBlogs } from '../../services/blogs';
+import { getCollection } from 'astro:content';
 
-const posts = await fetchRecentBlogs(3);
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
 
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
+const formatDate = (date: any) => {
+  return new Date(date).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric'
@@ -14,11 +17,11 @@ const formatDate = (dateString: string) => {
 
 <div class='recent-blogs'>
 	{posts && posts.length > 0 ? (
-		posts.map((post: any) => (
-			<a class="card recent-blogs__item group" href={`/posts/${post.slug}`}>
-				<p class="recent-blogs__date">{formatDate(post.date)}</p>
-				<h3 class="font-display recent-blogs__title" set:html={post.title}></h3>
-				<div class="recent-blogs__excerpt text-muted" set:html={post.excerpt}></div>
+		posts.map((post) => (
+			<a class="card recent-blogs__item group" href={`/blog/${post.slug}`}>
+				<p class="recent-blogs__date">{formatDate(post.data.pubDate)}</p>
+				<h3 class="font-display recent-blogs__title">{post.data.title}</h3>
+				<div class="recent-blogs__excerpt text-muted">{post.data.description}</div>
 				<div class="recent-blogs__read-more">
 					Read Article <i class="fa-solid fa-arrow-right recent-blogs__icon-arrow"></i>
 				</div>

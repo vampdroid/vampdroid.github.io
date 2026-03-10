@@ -11,37 +11,44 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<article class="card featured-blog-card" data-category={post.data.tag?.toLowerCase()}>
-	<div class="featured-blog-card__image-container">
-		<img
-			alt="Featured Post"
-			class="featured-blog-card__image"
-			src={imageUrl}
-		/>
-		<div class="featured-blog-card__overlay"></div>
-	</div>
-	<div class="featured-blog-card__content">
-		<div class="blog-meta">
-			<span class={`blog-tag blog-tag--${(post.data.tagClass || 'tag-uncategorized').replace('tag-', '')}`}>{post.data.tag}</span>
-			<span class="blog-meta__read-time text-muted">
-				<i class="fa-regular fa-clock"></i> {post.data.readTime}
-			</span>
+<a href={`/blog/${post.slug}`} class="featured-blog-card-link">
+	<article class="card featured-blog-card" data-category={post.data.tag?.toLowerCase()}>
+		<div class="featured-blog-card__image-container">
+			<img
+				alt="Featured Post"
+				class="featured-blog-card__image"
+				src={imageUrl}
+			/>
+			<div class="featured-blog-card__overlay"></div>
 		</div>
-		<h2 class="featured-blog-card__title font-display">
-			{post.data.title}
-		</h2>
-		<p class="featured-blog-card__description text-muted">
-			{post.data.description}
-		</p>
-		<div class="featured-blog-card__footer">
-			<span class="featured-blog-card__read-more">
-				Read Full Story <i class="fa-solid fa-arrow-right"></i>
-			</span>
-			<span class="blog-meta__date text-muted">{formattedDate}</span>
+		<div class="featured-blog-card__content">
+			<div class="blog-meta">
+				<span class={`blog-tag blog-tag--${(post.data.tagClass || 'tag-uncategorized').replace('tag-', '')}`}>{post.data.tag}</span>
+				<span class="blog-meta__read-time text-muted">
+					<i class="fa-regular fa-clock"></i> {post.data.readTime}
+				</span>
+			</div>
+			<h2 class="featured-blog-card__title font-display">
+				{post.data.title}
+			</h2>
+			<p class="featured-blog-card__description text-muted">
+				{post.data.description}
+			</p>
+			<div class="featured-blog-card__footer">
+				<span class="featured-blog-card__read-more">
+					Read Full Story <i class="fa-solid fa-arrow-right"></i>
+				</span>
+				<span class="blog-meta__date text-muted">{formattedDate}</span>
+			</div>
 		</div>
-	</div>
-</article>
+	</article>
+</a>
 
 <style lang="scss">
+	.featured-blog-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
 	@use "./FeaturedBlogCard.scss";
 </style>
