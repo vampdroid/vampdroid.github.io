@@ -1,0 +1,132 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ReadingProgress from "../../components/ReadingProgress/ReadingProgress.astro";
+import ShareButtons from "../../components/ShareButtons/ShareButtons.astro";
+import AuthorInfo from "../../components/AuthorInfo/AuthorInfo.astro";
+import { getCollection, render } from "astro:content";
+import BlogCard from "../../components/BlogCard/BlogCard.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+	return posts.map((post) => ({
+		params: { slug: post.slug || post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// For SEO
+const postUrl = `https://yashkukreja.com/tech-blogs/${post.slug || post.id}`;
+
+const allPosts = await getCollection("blog");
+let relatedPosts = allPosts
+	.filter((p) => (p.slug || p.id) !== (post.slug || post.id) && p.data.tag === post.data.tag)
+	.slice(0, 2);
+
+if (relatedPosts.length === 0) {
+	relatedPosts = allPosts
+		.filter((p) => (p.slug || p.id) !== (post.slug || post.id))
+		.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+		.slice(0, 2);
+}
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+	month: 'long',
+	day: 'numeric',
+	year: 'numeric'
+});
+---
+
+<PageLayout title={`${post.data.title} - Yash Kukreja`}>
+	<ReadingProgress />
+
+	<article class="blog-post">
+		<header class="blog-post__header">
+			<div class="blog-post__meta">
+				<span class={`blog-tag blog-tag--${post.data.tagClass?.replace('tag-', '') || 'general'}`}>
+					{post.data.tag}
+				</span>
+				<span class="blog-post__date">
+					<i class="fa-regular fa-calendar"></i> {formattedDate}
+				</span>
+				<span class="blog-post__read-time">
+					<i class="fa-regular fa-clock"></i> {post.data.readTime}
+				</span>
+			</div>
+			
+			<h1 class="blog-post__title font-display" transition:name={`title-${post.slug || post.id}`}>
+				{post.data.title}
+			</h1>
+
+			{post.data.description && (
+				<p class="blog-post__description text-muted">{post.data.description}</p>
+			)}
+
+			{post.data.image && (
+				<div class="blog-post__hero">
+					<img src={post.data.image} alt={post.data.title} class="blog-post__hero-img" />
+				</div>
+			)}
+		</header>
+
+		<div class="blog-post__content prose">
+			<Content />
+		</div>
+
+		<footer class="blog-post__footer">
+			<ShareButtons title={post.data.title} url={postUrl} label="SHARE THIS ARTICLE" />
+
+			<AuthorInfo />
+
+			<hr class="blog-post__divider" />
+
+			<div class="blog-post__navigation">
+				<a href="/tech-blogs" class="blog-post__back">
+					<i class="fa-solid fa-arrow-left"></i> Back to Feed
+				</a>
+			</div>
+		</footer>
+
+		{relatedPosts.length > 0 && (
+			<section class="related-posts">
+				<h2 class="related-posts__title font-display">Related Articles</h2>
+				<div class="related-posts__grid">
+					{relatedPosts.map(p => <BlogCard post={p} />)}
+				</div>
+			</section>
+		)}
+	</article>
+</PageLayout>
+
+
+
+<style is:global lang="scss">
+	@use "../../styles/_post.scss";
+
+	.related-posts {
+		margin-top: 80px;
+		padding-top: 40px;
+		border-top: 1px solid var(--color-border);
+
+		&__title {
+			font-size: 2rem;
+			margin-bottom: 30px;
+		}
+
+		&__grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 24px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.related-posts__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+

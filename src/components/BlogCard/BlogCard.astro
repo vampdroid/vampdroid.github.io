@@ -8,25 +8,38 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
-	<div class="blog-meta">
-		<span class={`blog-tag blog-tag--${post.data.tagClass.replace('tag-', '')}`}>{post.data.tag}</span>
-		<span class="blog-meta__date text-muted">{formattedDate}</span>
-	</div>
-	<h3 class="blog-card__title font-display">
-		{post.data.title}
-	</h3>
-	<p class="blog-card__description text-muted">
-		{post.data.description}
-	</p>
-	<div class="blog-card__footer">
-		<span class="blog-meta__read-time text-muted">
-			<i class="fa-regular fa-clock"></i> {post.data.readTime}
-		</span>
-		<span class="blog-card__read-more">Read More</span>
-	</div>
-</article>
+<a href={`/tech-blogs/${post.slug || post.id}`} class="blog-card-link">
+	<article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
+		{post.data.image && (
+			<div class="blog-card__image-container">
+				<img src={post.data.image} alt={post.data.title} class="blog-card__image" />
+			</div>
+		)}
+		<div class="blog-meta">
+			<span class={`blog-tag blog-tag--${post.data.tagClass.replace('tag-', '')}`}>{post.data.tag}</span>
+			<span class="blog-meta__date text-muted">{formattedDate}</span>
+		</div>
+		<h3 class="blog-card__title font-display" transition:name={`title-${post.slug || post.id}`}>
+			{post.data.title}
+		</h3>
+		<p class="blog-card__description text-muted">
+			{post.data.description}
+		</p>
+		<div class="blog-card__footer">
+			<span class="blog-meta__read-time text-muted">
+				<i class="fa-regular fa-clock"></i> {post.data.readTime}
+			</span>
+			<span class="blog-card__read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+		</div>
+	</article>
+</a>
 
 <style lang="scss">
 	@use "./BlogCard.scss";
+
+	.blog-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
 </style>

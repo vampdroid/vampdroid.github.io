@@ -1,0 +1,50 @@
+---
+const { post } = Astro.props;
+
+const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric'
+});
+
+// Strip HTML tags from excerpt
+const cleanExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '') || '';
+const imageUrl = post.featuredImage?.node?.sourceUrl;
+---
+
+<a href={`/daily-blogs/${post.slug}`} class="daily-blog-card-link">
+	<article class="card daily-blog-card">
+		{imageUrl && (
+			<div class="daily-blog-card__image-wrapper">
+				<img src={imageUrl} alt={post.title} class="daily-blog-card__image" />
+			</div>
+		)}
+		<div class="daily-blog-card__content">
+			<div class="daily-blog-card__meta">
+				<span class="daily-blog-card__date text-muted">
+					<i class="fa-regular fa-calendar"></i> {formattedDate}
+				</span>
+			</div>
+			<h3 class="daily-blog-card__title font-display">
+				{post.title}
+			</h3>
+			<p class="daily-blog-card__excerpt text-muted">
+				{cleanExcerpt.length > 160 ? cleanExcerpt.substring(0, 160) + '...' : cleanExcerpt}
+			</p>
+			<div class="daily-blog-card__footer">
+				<span class="daily-blog-card__read-more">Read Entry <i class="fa-solid fa-arrow-right"></i></span>
+			</div>
+		</div>
+	</article>
+</a>
+
+<style lang="scss">
+	@use "./DailyBlogCard.scss";
+
+	.daily-blog-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		margin-bottom: 24px;
+	}
+</style>

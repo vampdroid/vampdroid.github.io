@@ -1,0 +1,29 @@
+---
+---
+<div class="reading-progress-container">
+	<div id="reading-progress" class="reading-progress-bar"></div>
+</div>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const progressBar = document.getElementById('reading-progress');
+		const article = document.querySelector('.blog-post');
+		
+		if (progressBar && article) {
+            // Provide named function for easy event removal
+            function onScroll() {
+				const rect = article.getBoundingClientRect();
+				const winHeight = window.innerHeight;
+				const articleHeight = rect.height;
+				const scrolled = -rect.top;
+				
+				let progress = (scrolled / (articleHeight - winHeight + 200)) * 100;
+				progress = Math.max(0, Math.min(100, progress));
+				
+				progressBar.style.width = `${progress}%`;
+			}
+
+            window.addEventListener('scroll', onScroll);
+		}
+	});
+</script>

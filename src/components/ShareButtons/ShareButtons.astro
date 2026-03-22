@@ -1,0 +1,44 @@
+---
+const { title, url, label = "SHARE THIS ENTRY" } = Astro.props;
+---
+<div class="blog-post__share">
+	<p class="text-muted font-display share-title">{label}</p>
+	<div class="share-buttons">
+		<a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" class="share-btn twitter" aria-label="Share on X">
+			<i class="fa-brands fa-x-twitter"></i>
+		</a>
+		<a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" class="share-btn linkedin" aria-label="Share on LinkedIn">
+			<i class="fa-brands fa-linkedin"></i>
+		</a>
+		<button class="share-btn copy" id="copy-link" aria-label="Copy Link" data-url={url}>
+			<i class="fa-solid fa-link"></i>
+		</button>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const copyBtn = document.getElementById('copy-link');
+		if (copyBtn) {
+            // Need a clean event listener approach because of astro:page-load
+			const newBtn = copyBtn.cloneNode(true);
+			copyBtn.parentNode?.replaceChild(newBtn, copyBtn);
+			
+			newBtn.addEventListener('click', () => {
+				const url = (newBtn as HTMLButtonElement).getAttribute('data-url');
+				if (url) {
+					navigator.clipboard.writeText(url);
+					const icon = newBtn.querySelector('i');
+					if (icon) {
+						icon.classList.remove('fa-link');
+						icon.classList.add('fa-check');
+						setTimeout(() => {
+							icon.classList.remove('fa-check');
+							icon.classList.add('fa-link');
+						}, 2000);
+					}
+				}
+			});
+		}
+	});
+</script>

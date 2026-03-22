@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 	const POSTS_PER_PAGE = 2; // Matches previous logic
 
 	const sortedPosts = allPosts.sort(
-		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+		(a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 	);
 
 	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tag?.toLowerCase()))].filter(Boolean);
@@ -72,9 +72,9 @@ const { posts, featuredPost, currentPage, totalPages, currentTag, tags = [] } = 
 <PageLayout title="Blog - Yash Kukreja">
 	<div class="blog-header">
 		<div class="blog-header__info">
-			<h1 class="blog-header__title font-display">Writing</h1>
+			<h1 class="blog-header__title font-display">Tech Blogs</h1>
 			<p class="blog-header__description text-muted">
-				Thoughts on software engineering, product development, and career growth.
+				Thoughts on software engineering, product development, and career growth. Written in MDX.
 			</p>
 		</div>
 		<BlogFilters tags={tags} activeTag={currentTag} />
@@ -88,7 +88,7 @@ const { posts, featuredPost, currentPage, totalPages, currentTag, tags = [] } = 
 		))}
 	</div>
 
-	<BlogPagination 
+	<BlogPagination
 		currentPage={currentPage} 
 		totalPages={totalPages} 
 		currentTag={currentTag} 
