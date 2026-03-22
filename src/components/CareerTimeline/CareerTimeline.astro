@@ -1,0 +1,130 @@
+---
+import { Icon } from "astro-icon/components";
+
+const timelineData = [
+    {
+        date: "2025.07 — PRESENT",
+        title: "Senior Software Engineer",
+        subtitle: "rtCamp • Remote | Pune, India",
+        icon: "fa6-solid:plane",
+        filename: "one-man-army.sh",
+        milestone: "// Milestone: Lead Two Projects",
+        description: "Worked closely with world's leading travel agency to re-design their frontend design within tight deadlines and feature releases.",
+        tags: ["TYPESCRIPT", "SCSS", "LARAVEL-BLADE", "WORDPRESS", "PHP"],
+        alignment: "right"
+    },
+    {
+        date: "2023.07 — 2025.06",
+        title: "Software Engineer",
+        subtitle: "rtCamp • Remote | Pune, India",
+        icon: "fa6-solid:brain",
+        filename: "challenges-accepted.py",
+        milestone: "// Milestone: First Open Source Contribution",
+        description: "Worked with Automattic with their Built By WordPress program - designing block themes.",
+        tags: ["JAVASCRIPT", "REACT", "WORDPRESS", "GUTENBERG", "CSS"],
+        alignment: "left"
+    },
+    {
+        date: "2023.01 — 2023.06",
+        title: "Software Engineer Trainee",
+        subtitle: "rtCamp • Remote | Pune, India",
+        icon: "fa6-solid:code",
+        filename: "reality_check.log",
+        milestone: "// Milestone: Self Learning Mindset",
+        description: "Learned WordPress ecosystem and best practices through regress training.",
+        tags: ["HTML", "CSS", "JAVASCRIPT", "WORDPRESS", "PHP"],
+        alignment: "right"
+    },
+	{
+        isBreaker: true,
+        title: "EDUCATION"
+    },
+    {
+        date: "2021.06 — 2023.07",
+        title: "Master of Science - Information Technology - MSc. IT",
+        subtitle: "Dhirubhai Ambani Institute of Information and Communication Technology • Gandhinagar, India",
+        icon: "fa6-solid:user-graduate",
+        filename: "master_of_science.log",
+        milestone: "// Milestone: Advanced Studies",
+        description: "Learned advanced computer science concepts and lead project of 11 members - created a full-stack edtech platform.",
+        tags: ["REACT", "NODE", "EXPRESS", "MONGODB", "JAVASCRIPT"],
+        alignment: "right"
+    },
+	{
+        date: "2018.06 — 2021.05",
+        title: "Bachelors of Computer Application",
+        subtitle: "St. Xavier's College • Ahmedabad, India",
+        icon: "fa6-solid:graduation-cap",
+        filename: "bca.py",
+        milestone: "// Milestone: First Open Source Contribution",
+        description: "Learned core computer science concepts and developed strong foundation in programming and software development.",
+        tags: ["DJANGO", "PYTHON", "ANDROID", "JAVA", "C++", "HTML", "CSS", "JAVASCRIPT", "SQL"],
+        alignment: "left"
+    }
+];
+---
+
+<div class="career-timeline-container">
+    <header class="career-timeline-header">
+        <div class="career-timeline-header__meta">
+            <span class="career-timeline-header__tag">COMMIT_LOG</span>
+            <span class="career-timeline-header__branch">branch: main/experience</span>
+        </div>
+        <h1 class="career-timeline-header__title">
+            The Developer's <span class="career-timeline-header__title-em">Timeline</span>
+        </h1>
+        <p class="career-timeline-header__subtitle">
+            A chronological log of deployment milestones, and technical breakthroughs across my professional career.
+        </p>
+    </header>
+
+    <div class="career-timeline">
+        {timelineData.map((item) => (
+            item.isBreaker ? (
+                <div class="career-timeline__breaker">
+                    <span class="career-timeline__breaker-text">{item.title}</span>
+                </div>
+            ) : (
+            <div class={`career-timeline__item career-timeline__item--${item.alignment}`}>
+                
+                <div class="career-timeline__meta">
+                    <div class="career-timeline__date">{item.date}</div>
+                    <h3 class="career-timeline__title">{item.title}</h3>
+                    <p class="career-timeline__subtitle">{item.subtitle}</p>
+                </div>
+
+                <div class="career-timeline__divider">
+                    <div class="career-timeline__icon">
+                        <Icon name={item.icon} />
+                    </div>
+                </div>
+
+                <div class="career-timeline__card">
+                    <div class="career-timeline__card-header">
+                        <div class="career-timeline__card-dots">
+                            <div class="career-timeline__card-dot career-timeline__card-dot--red"></div>
+                            <div class="career-timeline__card-dot career-timeline__card-dot--amber"></div>
+                            <div class="career-timeline__card-dot career-timeline__card-dot--green"></div>
+                        </div>
+                        <span class="career-timeline__card-filename">{item.filename}</span>
+                    </div>
+                    <div class="career-timeline__card-body">
+                        <div class="career-timeline__card-milestone">{item.milestone}</div>
+                        <div class="career-timeline__card-text" set:html={item.description}></div>
+                        <div class="career-timeline__card-tags">
+                            {item.tags.map(tag => (
+                                <span class="career-timeline__card-tag">{tag}</span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            )
+        ))}
+    </div>
+</div>
+
+<style lang="scss">
+    @use "./CareerTimeline.scss";
+</style>
