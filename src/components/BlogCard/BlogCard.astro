@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 const { post } = Astro.props;
 
 const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
@@ -27,14 +28,15 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 		</p>
 		<div class="blog-card__footer">
 			<span class="blog-meta__read-time text-muted">
-				<i class="fa-regular fa-clock"></i> {post.data.readTime}
+				<Icon name="fa6-regular:clock" /> {post.data.readTime}
 			</span>
-			<span class="blog-card__read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+			<span class="blog-card__read-more">Read More <Icon name="fa6-solid:arrow-right" /></span>
 		</div>
 	</article>
 </a>
 
 <style lang="scss">
+	@use "../../styles/_blog-shared.scss";
 	@use "./BlogCard.scss";
 
 	.blog-card-link {

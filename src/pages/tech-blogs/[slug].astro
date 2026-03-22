@@ -3,6 +3,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress.astro";
 import ShareButtons from "../../components/ShareButtons/ShareButtons.astro";
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo.astro";
+import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 import BlogCard from "../../components/BlogCard/BlogCard.astro";
 
@@ -49,10 +50,10 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 					{post.data.tag}
 				</span>
 				<span class="blog-post__date">
-					<i class="fa-regular fa-calendar"></i> {formattedDate}
+					<Icon name="fa6-regular:calendar" /> {formattedDate}
 				</span>
-				<span class="blog-post__read-time">
-					<i class="fa-regular fa-clock"></i> {post.data.readTime}
+				<span class="blog-meta__read-time">
+					<Icon name="fa6-regular:clock" /> {post.data.readTime}
 				</span>
 			</div>
 			
@@ -84,7 +85,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 
 			<div class="blog-post__navigation">
 				<a href="/tech-blogs" class="blog-post__back">
-					<i class="fa-solid fa-arrow-left"></i> Back to Feed
+					<Icon name="fa6-solid:arrow-left" /> Back to Feed
 				</a>
 			</div>
 		</footer>

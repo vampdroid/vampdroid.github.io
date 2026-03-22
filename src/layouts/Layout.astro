@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import "../styles/global.scss";
+import { Icon } from 'astro-icon/components';
 const { title, isHome = false } = Astro.props;
 ---
 <html lang="en" class={isHome ? 'page-home' : 'page-other'}>
@@ -38,8 +39,8 @@ const { title, isHome = false } = Astro.props;
 	</main>
 	<div class="theme-toggle">
 		<button class="theme-toggle__btn" aria-label="Toggle Dark Mode">
-			<i class="fa-solid fa-moon dark-hidden"></i>
-			<i class="fa-solid fa-sun dark-block"></i>
+			<Icon name="fa6-solid:moon" class="dark-hidden" />
+			<Icon name="fa6-solid:sun" class="dark-block" />
 		</button>
 	</div>
 	<script>

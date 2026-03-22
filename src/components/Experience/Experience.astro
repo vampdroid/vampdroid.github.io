@@ -1,9 +1,10 @@
 ---
+import { Icon } from "astro-icon/components";
 const { title, experiences } = Astro.props;
 ---
 <div class="card experience">
 	<h2 class="font-display experience__title">
-		<i class="fa-solid fa-briefcase text-primary experience__icon"></i> {title}
+		<Icon name="fa6-solid:briefcase" class="text-primary experience__icon" /> {title}
 	</h2>
 	
 	<div class="experience__timeline">
