@@ -3,6 +3,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress.astro";
 import ShareButtons from "../../components/ShareButtons/ShareButtons.astro";
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo.astro";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
 	const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
@@ -56,7 +57,7 @@ const description = cleanExcerpt.length > 150 ? cleanExcerpt.substring(0, 150) +
 			<div class="blog-post__meta">
 				<span class="blog-tag blog-tag--daily">Daily Blog</span>
 				<span class="blog-post__date">
-					<i class="fa-regular fa-calendar"></i> {formattedDate}
+					<Icon name="fa6-regular:calendar" /> {formattedDate}
 				</span>
 			</div>
 			
@@ -86,7 +87,7 @@ const description = cleanExcerpt.length > 150 ? cleanExcerpt.substring(0, 150) +
 
 			<div class="blog-post__navigation">
 				<a href="/daily-blogs" class="blog-post__back">
-					<i class="fa-solid fa-arrow-left"></i> Back to Archive
+					<Icon name="fa6-solid:arrow-left" /> Back to Archive
 				</a>
 			</div>
 		</footer>

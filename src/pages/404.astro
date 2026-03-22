@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <PageLayout title="404 - Page Not Found">
@@ -17,10 +18,10 @@ import PageLayout from "../layouts/PageLayout.astro";
 			
 			<div class="error-page__actions">
 				<a href="/" class="error-page__btn error-page__btn--primary">
-					<i class="fa-solid fa-house"></i> Home
+					<Icon name="fa6-solid:house" /> Home
 				</a>
 				<button onclick="history.back()" class="error-page__btn error-page__btn--outline">
-					<i class="fa-solid fa-arrow-left"></i> Back
+					<Icon name="fa6-solid:arrow-left" /> Back
 				</button>
 			</div>
 		</div>
@@ -28,10 +29,10 @@ import PageLayout from "../layouts/PageLayout.astro";
 		<div class="error-page__suggestions card card--small">
 			<h2 class="error-page__subtitle font-display">Quick Links</h2>
 			<ul class="error-page__list">
-				<li><a href="/tech-blogs" class="error-page__link"><i class="fa-solid fa-newspaper"></i> Tech Blogs</a></li>
-				<li><a href="/daily-blogs" class="error-page__link"><i class="fa-solid fa-pen-to-square"></i> Daily Blogs</a></li>
-				<li><a href="/chat" class="error-page__link"><i class="fa-solid fa-robot"></i> AI Chat</a></li>
-				<li><a href="/projects" class="error-page__link"><i class="fa-solid fa-folder"></i> Projects</a></li>
+				<li><a href="/tech-blogs" class="error-page__link"><Icon name="fa6-solid:newspaper" /> Tech Blogs</a></li>
+				<li><a href="/daily-blogs" class="error-page__link"><Icon name="fa6-solid:pen-to-square" /> Daily Blogs</a></li>
+				<li><a href="/chat" class="error-page__link"><Icon name="fa6-solid:robot" /> AI Chat</a></li>
+				<li><a href="/projects" class="error-page__link"><Icon name="fa6-solid:folder" /> Projects</a></li>
 			</ul>
 		</div>
 	</div>

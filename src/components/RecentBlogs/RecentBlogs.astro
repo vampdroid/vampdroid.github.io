@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from "astro-icon/components";
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
@@ -23,7 +24,7 @@ const formatDate = (date: any) => {
 				<h3 class="font-display recent-blogs__title" transition:name={`title-${post.slug || post.id}`}>{post.data.title}</h3>
 				<div class="recent-blogs__excerpt text-muted">{post.data.description}</div>
 				<div class="recent-blogs__read-more">
-					Read Article <i class="fa-solid fa-arrow-right recent-blogs__icon-arrow"></i>
+					Read Article <Icon name="fa6-solid:arrow-right" class="recent-blogs__icon-arrow" />
 				</div>
 			</a>
 		))

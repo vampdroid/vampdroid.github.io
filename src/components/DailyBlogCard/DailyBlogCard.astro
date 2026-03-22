@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 const { post } = Astro.props;
 
 const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
@@ -22,7 +23,7 @@ const imageUrl = post.featuredImage?.node?.sourceUrl;
 		<div class="daily-blog-card__content">
 			<div class="daily-blog-card__meta">
 				<span class="daily-blog-card__date text-muted">
-					<i class="fa-regular fa-calendar"></i> {formattedDate}
+					<Icon name="fa6-regular:calendar" /> {formattedDate}
 				</span>
 			</div>
 			<h3 class="daily-blog-card__title font-display">
@@ -32,7 +33,7 @@ const imageUrl = post.featuredImage?.node?.sourceUrl;
 				{cleanExcerpt.length > 160 ? cleanExcerpt.substring(0, 160) + '...' : cleanExcerpt}
 			</p>
 			<div class="daily-blog-card__footer">
-				<span class="daily-blog-card__read-more">Read Entry <i class="fa-solid fa-arrow-right"></i></span>
+				<span class="daily-blog-card__read-more">Read Entry <Icon name="fa6-solid:arrow-right" /></span>
 			</div>
 		</div>
 	</article>
