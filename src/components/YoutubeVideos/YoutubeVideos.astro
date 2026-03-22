@@ -3,10 +3,15 @@ import { fetchYoutubeVideos } from '../../services/youtube';
 
 interface Props {
 	layout?: 'column' | 'grid';
+	limit?: number;
 }
 
-const { layout = 'column' } = Astro.props;
-const videos = await fetchYoutubeVideos();
+const { layout = 'column', limit } = Astro.props;
+let videos = await fetchYoutubeVideos();
+
+if (limit) {
+	videos = videos.slice(0, limit);
+}
 ---
 <div class={`youtube-videos youtube-videos--layout-${layout}`}>
 	{videos.map((video: any) => (
