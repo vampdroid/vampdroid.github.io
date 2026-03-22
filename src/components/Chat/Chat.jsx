@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 import './chat.scss';
 
 const GREETING_MESSAGES = [
@@ -16,13 +17,13 @@ const API_ENDPOINT = 'https://portfolio-datalayer.vercel.app/api/chat';
 const ChatMessage = ({ sender, text }) => {
 	const isUser = sender === 'user';
 	const senderLabel = isUser ? 'You' : 'AI Assistant';
-	const iconClass = isUser ? 'fa-user' : 'fa-robot';
+	const iconClass = isUser ? 'fa6-solid:user' : 'fa6-solid:robot';
 	const variant = isUser ? 'user' : 'ai';
 
 	return (
 		<div className={`chat-message chat-message--${variant}`}>
 			<div className={`chat-message__avatar chat-message__avatar--${variant}`}>
-				<i className={`fa-solid ${iconClass} chat-message__avatar-icon`}></i>
+				<Icon icon={iconClass} className="chat-message__avatar-icon" />
 			</div>
 			<div className={`chat-message__body chat-message__body--${variant}`}>
 				<span className="chat-message__sender">{senderLabel}</span>
@@ -40,7 +41,7 @@ const ChatMessage = ({ sender, text }) => {
 const TypingIndicator = () => (
 	<div className="chat-loading" style={{ display: 'flex' }}>
 		<div className="chat-message__avatar chat-message__avatar--ai">
-			<i className="fa-solid fa-robot chat-message__avatar-icon"></i>
+			<Icon icon="fa6-solid:robot" className="chat-message__avatar-icon" />
 		</div>
 		<div className="chat-message__body chat-message__body--ai">
 			<span className="chat-message__sender">AI Assistant</span>
@@ -199,7 +200,7 @@ export default function Chat() {
 						className="chat-submit-button"
 						onClick={handleSubmit}
 					>
-						<i className="fa-solid fa-paper-plane"></i>
+						<Icon icon="fa6-solid:paper-plane" />
 					</button>
 				</div>
 			</div>

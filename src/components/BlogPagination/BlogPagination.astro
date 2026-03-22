@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 const { currentPage, totalPages, currentTag } = Astro.props;
 
 const getPageUrl = (page) => {
@@ -6,18 +7,16 @@ const getPageUrl = (page) => {
 	if (page === 1) return base;
 	return `${base}/${page}`;
 };
+
+const prevUrl = currentPage > 1 ? getPageUrl(currentPage - 1) : "#";
+const nextUrl = currentPage < totalPages ? getPageUrl(currentPage + 1) : "#";
 ---
 
 <div class="blog-pagination__container">
 	{totalPages > 1 && (
 		<nav class="blog-pagination">
-			<a 
-				href={currentPage > 1 ? getPageUrl(currentPage - 1) : "#"} 
-				class="blog-pagination__button"
-				aria-label="Previous Page"
-				style={currentPage === 1 ? "opacity: 0.5; pointer-events: none;" : ""}
-			>
-				<i class="fa-solid fa-arrow-left"></i>
+			<a href={prevUrl} class="pagination__btn" style={currentPage === 1 ? "opacity: 0.5; pointer-events: none;" : ""}>
+				<Icon name="fa6-solid:arrow-left" />
 			</a>
 
 			{[...Array(totalPages)].map((_, i) => {
@@ -32,13 +31,8 @@ const getPageUrl = (page) => {
 				);
 			})}
 
-			<a 
-				href={currentPage < totalPages ? getPageUrl(currentPage + 1) : "#"} 
-				class="blog-pagination__button"
-				aria-label="Next Page"
-				style={currentPage === totalPages ? "opacity: 0.5; pointer-events: none;" : ""}
-			>
-				<i class="fa-solid fa-arrow-right"></i>
+			<a href={nextUrl} class="pagination__btn" style={currentPage === totalPages ? "opacity: 0.5; pointer-events: none;" : ""}>
+				<Icon name="fa6-solid:arrow-right" />
 			</a>
 		</nav>
 	)}

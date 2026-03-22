@@ -1,8 +1,9 @@
 ---
+import { Icon } from "astro-icon/components";
 const { link, icon, color, text } = Astro.props;
 ---
 <a href={link} class="card card--small social" target="_blank" rel="noopener noreferrer">
-	<i class={`fa-brands ${icon} social__icon`} style={color && color !== 'inherit' ? `color: ${color};` : ''}></i>
+	<Icon name={`fa6-brands:${icon.replace('fa-', '')}`} class="social__icon" style={color && color !== 'inherit' ? `color: ${color};` : ''} />
 	<span class="social__text">{text}</span>
 </a>
 

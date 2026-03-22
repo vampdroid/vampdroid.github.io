@@ -12,6 +12,7 @@ import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
 import Grid from "../components/Grid/Grid.astro";
 import GridItem from "../components/GridItem/GridItem.astro";
 import Socials from "../components/Socials/Socials.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout title={ SITE_TITLE } isHome={true}>
@@ -73,7 +74,7 @@ import Socials from "../components/Socials/Socials.astro";
 		<div class="card project-card">
 			<div>
 				<h2 class="font-display project-card__title">
-					<i class="fa-solid fa-code text-primary project-card__icon"></i> PERSONAL PROJECT
+					<Icon name="fa6-solid:code" class="text-primary project-card__icon" /> PERSONAL PROJECT
 				</h2>
 			</div>
 			<div class="project-card__loader-container">

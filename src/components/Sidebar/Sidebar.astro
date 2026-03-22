@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import ProfileImagePath from "../../assets/images/profile.webp";
 
 const pathname = Astro.url.pathname;
@@ -34,7 +35,7 @@ const navItems = [
 			const isActive = pathname === item.path || pathname === item.path + '/';
 			return (
 				<a href={item.path} class={`sidebar-nav__link ${isActive ? 'sidebar-nav__link--active' : ''}`}>
-					<i class={`${item.type === 'brands' ? 'fa-brands' : 'fa-solid'} ${item.icon} sidebar-nav__icon`}></i>
+					<Icon name={`fa6-${item.type}:${item.icon.replace('fa-', '')}`} class="sidebar-nav__icon" />
 					<span class="sidebar-nav__text">{item.title}</span>
 				</a>
 			);
@@ -44,7 +45,7 @@ const navItems = [
 	{/* Mobile Navigation */}
 	<div class="sidebar-mobile-nav">
 		<a href="/" class="sidebar-mobile-nav__back">
-			<i class="fa-solid fa-arrow-left"></i> Home
+			<Icon name="fa6-solid:arrow-left" /> Home
 		</a>
 		{navItems.filter(i => i.path !== "/").map(item => {
 			const isActive = pathname === item.path || pathname === item.path + '/';
@@ -59,8 +60,8 @@ const navItems = [
 	{/* Theme Switcher inside sidebar for desktop */}
 	<div class="sidebar-theme">
 		<button class="sidebar-theme__btn sidebar-theme__btn--toggle" aria-label="Toggle Dark Mode">
-			<i class="fa-solid fa-moon dark-hidden"></i>
-			<i class="fa-solid fa-sun dark-block text-yellow"></i>
+			<Icon name="fa6-solid:moon" class="dark-hidden" />
+			<Icon name="fa6-solid:sun" class="dark-block text-yellow" />
 			<span class="sidebar-theme__text">Switch Theme</span>
 		</button>
 	</div>

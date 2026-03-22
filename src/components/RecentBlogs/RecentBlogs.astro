@@ -1,7 +1,8 @@
 ---
-import { fetchRecentBlogs } from '../../services/blogs';
+import { getCollection } from 'astro:content';
+import { Icon } from "astro-icon/components";
 
-const posts = await fetchRecentBlogs(3);
+const posts = await getCollection('blog');
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -19,8 +20,8 @@ const formatDate = (dateString: string) => {
 				<p class="recent-blogs__date">{formatDate(post.date)}</p>
 				<h3 class="font-display recent-blogs__title" set:html={post.title}></h3>
 				<div class="recent-blogs__excerpt text-muted" set:html={post.excerpt}></div>
-				<div class="recent-blogs__read-more">
-					Read Article <i class="fa-solid fa-arrow-right recent-blogs__icon-arrow"></i>
+				<div class="recent-blogs__footer">
+					Read Article <Icon name="fa6-solid:arrow-right" class="recent-blogs__icon-arrow" />
 				</div>
 			</a>
 		))

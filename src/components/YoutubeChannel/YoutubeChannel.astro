@@ -1,16 +1,17 @@
 ---
+import { Icon } from "astro-icon/components";
 const { title, description, url } = Astro.props;
 ---
 
 <div class="card youtube-channel">
 	<div class="youtube-channel__header">
-		<i class="fa-brands fa-youtube youtube-channel__icon"></i>
+		<Icon name="fa6-brands:youtube" class="youtube-channel__icon" />
 		<span class="youtube-channel__badge">Youtube</span>
 	</div>
 	<h3 class="font-display youtube-channel__title">{title}</h3>
 	<p class="text-muted youtube-channel__description">{description}</p>
 	<a class="youtube-channel__visit-link" href={url} target="_blank" rel="noopener noreferrer">
-		Visit Channel <i class="fa-solid fa-arrow-right youtube-channel__link-arrow"></i>
+		Visit Channel <Icon name="fa6-solid:arrow-right" class="youtube-channel__link-arrow" />
 	</a>
 </div>
 
