@@ -11,7 +11,7 @@ import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.astro";
 import RecentBlogs from "../components/RecentBlogs/RecentBlogs.astro";
 import Grid from "../components/Grid/Grid.astro";
 import GridItem from "../components/GridItem/GridItem.astro";
-import Socials from "../components/Socials/Socials.astro";
+
 ---
 
 <Layout title={ SITE_TITLE } isHome={true}>
@@ -60,12 +60,12 @@ import Socials from "../components/Socials/Socials.astro";
 					url="https://www.youtube.com/@howsthecode"
 				/>
 
-				<Socials>
+				<div class="socials">
 					<Social link="https://www.linkedin.com/in/yash-kukreja/" icon="fa-linkedin" color="#0077b5" text="LinkedIn" />
 					<Social link="https://github.com/vampdroid" icon="fa-github" color="inherit" text="GitHub" />
 					<Social link="https://x.com/yashskukreja" icon="fa-x-twitter" color="inherit" text="X Profile" />
 					<Social link="https://bsky.app/profile/yashkukreja.bsky.social" icon="fa-bluesky" color="#0085ff" text="Bluesky" />
-				</Socials>
+				</div>
 			</div>
 			</GridItem>
 		</Grid>

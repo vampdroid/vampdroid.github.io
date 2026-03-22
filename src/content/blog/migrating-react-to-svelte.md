@@ -3,6 +3,7 @@ title: "Migrating from React to Svelte: Lessons Learned"
 description: "A comprehensive look at our team's transition, performance improvements, and the developer experience differences we encountered."
 tag: "Tech"
 tagClass: "tag-tech"
+image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
 pubDate: "2025-04-12"
 readTime: "5 min read"
 ---

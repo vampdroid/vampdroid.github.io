@@ -4,6 +4,12 @@
 	gap: 24px;
 }
 
+.socials {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+}
+
 .sidebar-section {
 	display: flex;
 	flex-direction: column;

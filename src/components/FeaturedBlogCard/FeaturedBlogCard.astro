@@ -1,8 +1,7 @@
 ---
 const { post } = Astro.props;
 
-const defaultImageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuBXpAmZxfj-N05vM-XrhKfgRKoKhHjqRxjlrosX3DIKWBQx0MpIEaBLlzHNF8qR8yWs-4_U8eBSCFrTxM11koP0VlH3SZ90HBT8BRoIA5HeQ7fahcfMKullHfI7tbQeF3TtjwTch63RwJ_nEJ9kwNLuH3H2ZtD31Z1azjUx-UTJEBfnTxukcUOYSZBZUh-HZDeSe07nfoM8s16SxgbWXtJTy37qlm2k_JAVkfB9FBx2CChzYCBvImun-4I1iVbX4eOOz4uJj914tQ4";
-const imageUrl = post.data.image || defaultImageUrl;
+const imageUrl = post.data.image;
 
 const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 	month: 'short',
@@ -11,16 +10,18 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<a href={`/blog/${post.slug}`} class="featured-blog-card-link">
-	<article class="card featured-blog-card" data-category={post.data.tag?.toLowerCase()}>
-		<div class="featured-blog-card__image-container">
-			<img
-				alt="Featured Post"
-				class="featured-blog-card__image"
-				src={imageUrl}
-			/>
-			<div class="featured-blog-card__overlay"></div>
-		</div>
+<a href={`/tech-blogs/${post.slug || post.id}`} class="featured-blog-card-link">
+	<article class={`card featured-blog-card ${!imageUrl ? 'featured-blog-card--no-image' : ''}`} data-category={post.data.tag?.toLowerCase()}>
+		{imageUrl && (
+			<div class="featured-blog-card__image-container">
+				<img
+					alt="Featured Post"
+					class="featured-blog-card__image"
+					src={imageUrl}
+				/>
+				<div class="featured-blog-card__overlay"></div>
+			</div>
+		)}
 		<div class="featured-blog-card__content">
 			<div class="blog-meta">
 				<span class={`blog-tag blog-tag--${(post.data.tagClass || 'tag-uncategorized').replace('tag-', '')}`}>{post.data.tag}</span>
@@ -28,7 +29,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 					<i class="fa-regular fa-clock"></i> {post.data.readTime}
 				</span>
 			</div>
-			<h2 class="featured-blog-card__title font-display">
+			<h2 class="featured-blog-card__title font-display" transition:name={`title-${post.slug || post.id}`}>
 				{post.data.title}
 			</h2>
 			<p class="featured-blog-card__description text-muted">
@@ -45,10 +46,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 </a>
 
 <style lang="scss">
+	@use "./FeaturedBlogCard.scss";
+
 	.featured-blog-card-link {
 		text-decoration: none;
 		color: inherit;
 		display: block;
 	}
-	@use "./FeaturedBlogCard.scss";
 </style>

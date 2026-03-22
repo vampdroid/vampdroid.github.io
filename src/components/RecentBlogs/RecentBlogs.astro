@@ -18,9 +18,9 @@ const formatDate = (date: any) => {
 <div class='recent-blogs'>
 	{posts && posts.length > 0 ? (
 		posts.map((post) => (
-			<a class="card recent-blogs__item group" href={`/blog/${post.slug}`}>
+			<a class="card recent-blogs__item group" href={`/tech-blogs/${post.slug || post.id}`}>
 				<p class="recent-blogs__date">{formatDate(post.data.pubDate)}</p>
-				<h3 class="font-display recent-blogs__title">{post.data.title}</h3>
+				<h3 class="font-display recent-blogs__title" transition:name={`title-${post.slug || post.id}`}>{post.data.title}</h3>
 				<div class="recent-blogs__excerpt text-muted">{post.data.description}</div>
 				<div class="recent-blogs__read-more">
 					Read Article <i class="fa-solid fa-arrow-right recent-blogs__icon-arrow"></i>

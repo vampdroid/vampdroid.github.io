@@ -1,0 +1,110 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ReadingProgress from "../../components/ReadingProgress/ReadingProgress.astro";
+import ShareButtons from "../../components/ShareButtons/ShareButtons.astro";
+import AuthorInfo from "../../components/AuthorInfo/AuthorInfo.astro";
+
+export async function getStaticPaths() {
+	const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
+	const response = await fetch(`${apiBaseUrl}?first=100`);
+	const result = await response.json();
+	const posts = result.data || [];
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
+
+const response = await fetch(`${apiBaseUrl}?type=single&slug=${slug}`);
+const result = await response.json();
+const post = result.data;
+
+if (!post) {
+	return Astro.redirect('/404');
+}
+
+const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+	month: 'long',
+	day: 'numeric',
+	year: 'numeric'
+});
+
+const postUrl = `https://yashkukreja.com/daily-blogs/${post.slug}`;
+
+const rawExcerpt = post.excerpt || post.content || '';
+// Replace HTML tags and decode HTML entities common in WP excerpts
+const cleanExcerpt = rawExcerpt
+	.replace(/<[^>]*>?/gm, '')
+	.replace(/&hellip;/g, '...')
+	.replace(/&nbsp;/g, ' ')
+	.replace(/&#8217;/g, "'")
+	.replace(/&#8220;/g, '"')
+	.replace(/&#8221;/g, '"')
+	.trim();
+
+const description = cleanExcerpt.length > 150 ? cleanExcerpt.substring(0, 150) + '...' : cleanExcerpt;
+---
+
+<PageLayout title={`${post.title} - Daily Blog - Yash Kukreja`}>
+	<ReadingProgress />
+
+	<article class="blog-post">
+		<header class="blog-post__header">
+			<div class="blog-post__meta">
+				<span class="blog-tag blog-tag--daily">Daily Blog</span>
+				<span class="blog-post__date">
+					<i class="fa-regular fa-calendar"></i> {formattedDate}
+				</span>
+			</div>
+			
+			<h1 class="blog-post__title font-display">
+				{post.title}
+			</h1>
+
+			{description && (
+				<p class="blog-post__description text-muted">{description}</p>
+			)}
+
+			{post.featuredImage?.node?.sourceUrl && (
+				<div class="blog-post__hero">
+					<img src={post.featuredImage.node.sourceUrl} alt={post.title} class="blog-post__hero-img" />
+				</div>
+			)}
+		</header>
+
+		<div class="blog-post__content prose" set:html={post.content} />
+
+		<footer class="blog-post__footer">
+			<ShareButtons title={post.title} url={postUrl} label="SHARE THIS ENTRY" />
+
+			<AuthorInfo />
+
+			<hr class="blog-post__divider" />
+
+			<div class="blog-post__navigation">
+				<a href="/daily-blogs" class="blog-post__back">
+					<i class="fa-solid fa-arrow-left"></i> Back to Archive
+				</a>
+			</div>
+		</footer>
+	</article>
+</PageLayout>
+
+
+
+<style is:global lang="scss">
+	@use "../../styles/_post.scss";
+
+	.blog-tag--daily {
+		background: rgba(139, 92, 246, 0.1);
+		color: #8b5cf6;
+		padding: 4px 12px;
+		border-radius: var(--radius-full);
+		font-weight: 600;
+		font-size: 12px;
+	}
+</style>
+

@@ -2,7 +2,7 @@
 const { currentPage, totalPages, currentTag } = Astro.props;
 
 const getPageUrl = (page) => {
-	const base = currentTag === "all" ? "/blogs" : `/blogs/${currentTag.toLowerCase()}`;
+	const base = currentTag === "all" ? "/tech-blogs" : `/tech-blogs/${currentTag.toLowerCase()}`;
 	if (page === 1) return base;
 	return `${base}/${page}`;
 };

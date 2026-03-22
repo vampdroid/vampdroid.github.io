@@ -8,13 +8,18 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<a href={`/blog/${post.slug}`} class="blog-card-link">
+<a href={`/tech-blogs/${post.slug || post.id}`} class="blog-card-link">
 	<article class="card blog-card" data-category={post.data.tag?.toLowerCase()}>
+		{post.data.image && (
+			<div class="blog-card__image-container">
+				<img src={post.data.image} alt={post.data.title} class="blog-card__image" />
+			</div>
+		)}
 		<div class="blog-meta">
 			<span class={`blog-tag blog-tag--${post.data.tagClass.replace('tag-', '')}`}>{post.data.tag}</span>
 			<span class="blog-meta__date text-muted">{formattedDate}</span>
 		</div>
-		<h3 class="blog-card__title font-display">
+		<h3 class="blog-card__title font-display" transition:name={`title-${post.slug || post.id}`}>
 			{post.data.title}
 		</h3>
 		<p class="blog-card__description text-muted">
@@ -30,10 +35,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 </a>
 
 <style lang="scss">
+	@use "./BlogCard.scss";
+
 	.blog-card-link {
 		text-decoration: none;
 		color: inherit;
 		display: block;
 	}
-	@use "./BlogCard.scss";
 </style>

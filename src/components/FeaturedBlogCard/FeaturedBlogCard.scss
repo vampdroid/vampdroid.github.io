@@ -8,6 +8,12 @@
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	&--no-image {
+		@media (min-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	&__image-container {
 		height: 256px;
 		position: relative;

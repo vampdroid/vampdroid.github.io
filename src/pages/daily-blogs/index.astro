@@ -1,0 +1,57 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import DailyBlogCard from "../../components/DailyBlogCard/DailyBlogCard.astro";
+
+const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
+
+let posts = [];
+let error = null;
+
+try {
+	const response = await fetch(`${apiBaseUrl}?first=20`);
+	const result = await response.json();
+	posts = result.data || [];
+} catch (e) {
+	error = e.message;
+}
+---
+
+<PageLayout title="Daily Blogs - Yash Kukreja">
+	<div class="blog-header">
+		<div class="blog-header__info">
+			<h1 class="blog-header__title font-display">Daily Blogs</h1>
+			<p class="blog-header__description text-muted">
+				Daily updates, quick thoughts, and life logs fetched directly from WordPress.
+			</p>
+		</div>
+	</div>
+
+	{error && <div class="error-message card">Error loading blogs: {error}</div>}
+
+	<div class="daily-posts-list">
+		{posts.length > 0 ? (
+			posts.map((post) => (
+				<DailyBlogCard post={post} />
+			))
+		) : (
+			!error && <p class="text-muted">No daily blogs found.</p>
+		)}
+	</div>
+</PageLayout>
+
+<style lang="scss">
+	@use "../_blogs.scss";
+
+	.daily-posts-list {
+		margin-top: 40px;
+		max-width: 900px;
+	}
+
+	.error-message {
+		margin-top: 40px;
+		padding: 20px;
+		color: #ef4444;
+		border-color: #ef4444;
+		background: rgba(239, 68, 68, 0.05);
+	}
+</style>
