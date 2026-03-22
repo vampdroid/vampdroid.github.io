@@ -1,0 +1,50 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { SITE_TITLE } from "../consts";
+import YoutubeVideos from "../components/YoutubeVideos/YoutubeVideos.astro";
+import YoutubeChannel from "../components/YoutubeChannel/YoutubeChannel.astro";
+---
+
+<PageLayout title={`YouTube | ${SITE_TITLE}`}>
+	<div class="youtube-page">
+		<h1 class="youtube-page__title font-display">YouTube Content</h1>
+		
+		<div class="youtube-page__channel">
+			<YoutubeChannel
+				title="HOW'S THE CODE?"
+				description="I create content around Software Engineering, Web Development, and Tech!"
+				url="https://www.youtube.com/@howsthecode"
+			/>
+		</div>
+
+		<div class="youtube-page__videos">
+			<h2 class="youtube-page__subtitle">Latest Videos</h2>
+			<YoutubeVideos layout="grid" />
+		</div>
+	</div>
+</PageLayout>
+
+<style lang="scss">
+	.youtube-page {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-xl);
+		padding: var(--spacing-md) 0;
+
+		&__title {
+			font-size: var(--font-size-3xl);
+			margin-bottom: var(--spacing-md);
+			color: var(--color-primary);
+		}
+
+		&__subtitle {
+			font-size: var(--font-size-2xl);
+			margin-bottom: var(--spacing-lg);
+			font-weight: var(--font-weight-medium);
+		}
+
+		&__videos {
+			margin-top: var(--spacing-lg);
+		}
+	}
+</style>

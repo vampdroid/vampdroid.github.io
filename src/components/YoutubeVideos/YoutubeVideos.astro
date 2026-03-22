@@ -1,9 +1,14 @@
 ---
 import { fetchYoutubeVideos } from '../../services/youtube';
 
+interface Props {
+	layout?: 'column' | 'grid';
+}
+
+const { layout = 'column' } = Astro.props;
 const videos = await fetchYoutubeVideos();
 ---
-<div class='youtube-videos'>
+<div class={`youtube-videos youtube-videos--layout-${layout}`}>
 	{videos.map((video: any) => (
 		<a class="card card--small youtube-videos__item group" href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">
 			<div class="youtube-videos__thumbnail-wrapper">
