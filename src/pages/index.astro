@@ -33,6 +33,7 @@ import { Icon } from "astro-icon/components";
 			<GridItem>
 				<Experience
 					title="EXPERIENCE"
+					link="/career-timeline"
 				experiences={
 					[
 						{
@@ -88,7 +89,7 @@ import { Icon } from "astro-icon/components";
 	<div class="main-container__sidebar">
 		<div class="sidebar-section">
 			<h2 class="sidebar-section__title">Latest Youtube Content</h2>
-			<YoutubeVideos />
+			<YoutubeVideos limit={4} />
 		</div>
 		
 		<div class="sidebar-section">

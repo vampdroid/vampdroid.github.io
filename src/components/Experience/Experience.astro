@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-const { title, experiences } = Astro.props;
+const { title, experiences, link } = Astro.props;
 ---
 <div class="card experience">
 	<h2 class="font-display experience__title">
@@ -24,6 +24,12 @@ const { title, experiences } = Astro.props;
 			</div>
 		))}
 	</div>
+
+	{link && (
+		<a href={link} class="experience__link" aria-label="View Full Timeline">
+			View Full Timeline <Icon name="fa6-solid:arrow-right" class="experience__link-icon" />
+		</a>
+	)}
 </div>
 
 <style lang="scss">
