@@ -314,6 +314,11 @@
 			transition: var(--transition-bounce);
 			font-size: 18px;
 			cursor: pointer;
+			color: var(--color-muted);
+
+			svg {
+				fill: currentColor;
+			}
 
 			&:hover {
 				transform: translateY(-4px);
@@ -330,6 +335,11 @@
 			&.linkedin:hover {
 				color: #0077b5;
 				border-color: #0077b5;
+			}
+
+			&.copy:hover {
+				color: var(--color-primary);
+				border-color: var(--color-primary);
 			}
 		}
 	}
