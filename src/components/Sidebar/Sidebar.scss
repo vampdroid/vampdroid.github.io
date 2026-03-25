@@ -143,6 +143,8 @@
 	gap: var(--spacing-sm);
 	overflow-x: auto;
 	padding-bottom: var(--spacing-sm);
+	width: 100%;
+	min-width: 0; // Essential for flex/grid children to shrink
 
 	&::-webkit-scrollbar {
 		display: none;

@@ -3,6 +3,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		min-width: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		overflow: hidden !important;
 
 		@media (min-width: 768px) {
 			grid-column: span 12 / span 12;
@@ -20,7 +24,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
-		min-width: 0;
+		min-width: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		overflow: hidden !important;
 
 		@media (min-width: 768px) {
 			grid-column: span 12 / span 12;

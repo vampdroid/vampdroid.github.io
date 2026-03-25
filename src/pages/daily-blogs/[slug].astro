@@ -99,6 +99,26 @@ const description = cleanExcerpt.length > 150 ? cleanExcerpt.substring(0, 150) +
 <style is:global lang="scss">
 	@use "../../styles/_post.scss";
 
+	.blog-post {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		overflow-x: hidden !important;
+		overflow-wrap: anywhere !important; // Standard responsive wrap
+
+		&, & * {
+			box-sizing: border-box !important;
+			min-width: 0 !important;
+		}
+
+		img,
+		video,
+		iframe {
+			max-width: 100% !important;
+			height: auto !important;
+		}
+	}
+
 	.blog-tag--daily {
 		background: rgba(139, 92, 246, 0.1);
 		color: #8b5cf6;
