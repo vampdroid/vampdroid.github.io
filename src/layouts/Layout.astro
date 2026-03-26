@@ -1,3 +1,4 @@
+---
 import { ViewTransitions } from 'astro:transitions';
 import "../styles/global.scss";
 import { Icon } from 'astro-icon/components';
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const { title, description = SITE_DESCRIPTION, image = '/og-image.png', isHome = false } = Astro.props;
+---
 <html lang="en" class={isHome ? 'page-home' : 'page-other'}>
   <head>
 	<!-- Google Tag Manager -->

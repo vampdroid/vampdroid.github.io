@@ -1,9 +1,21 @@
 ---
+export const prerender = true;
 import PageLayout from "../../layouts/PageLayout.astro";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress.astro";
 import ShareButtons from "../../components/ShareButtons/ShareButtons.astro";
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo.astro";
 import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths() {
+	const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
+	const response = await fetch(`${apiBaseUrl}?first=100`);
+	const result = await response.json();
+	const posts = result.data || [];
+	
+	return posts.map((post: any) => ({
+		params: { slug: post.slug },
+	}));
+}
 
 const { slug } = Astro.params;
 const apiBaseUrl = 'https://portfolio-datalayer.vercel.app/api/blogs';
