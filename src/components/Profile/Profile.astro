@@ -1,12 +1,12 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 const { title, description, image } = Astro.props;
 ---
 
 <div class="card profile">
 	<div class="profile__image-wrapper">
 		<div class="profile__image-ring">
-			<Image class="profile__image" src={image} alt={title} />
+			<Image class="profile__image" src={image} alt={title} loading="eager" width={120} height={120} />
 		</div>
 		<div class="profile__status-dot"></div>
 	</div>

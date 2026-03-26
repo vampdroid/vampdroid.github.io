@@ -13,5 +13,8 @@ export default defineConfig({
     prefetch: true,
     output: 'server',
     integrations: [mdx(), sitemap(), react(), icon()],
-    adapter: cloudflare()
+    adapter: cloudflare(),
+    image: {
+        domains: ["img.youtube.com"],
+    }
 });
