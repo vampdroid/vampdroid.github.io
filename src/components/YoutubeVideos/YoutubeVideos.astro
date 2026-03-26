@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { fetchYoutubeVideos } from '../../services/youtube';
 
 interface Props {
@@ -17,7 +18,14 @@ if (limit) {
 	{videos.map((video: any) => (
 		<a class="card card--small youtube-videos__item group" href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">
 			<div class="youtube-videos__thumbnail-wrapper">
-				<img src={video.thumbnail} alt={video.title} class="youtube-videos__thumbnail" />
+				<Image 
+					src={video.thumbnail} 
+					alt={video.title} 
+					class="youtube-videos__thumbnail" 
+					width={480} 
+					height={270}
+					loading="lazy"
+				/>
 				<div class="youtube-videos__overlay"></div>
 			</div>
 			<div class="youtube-videos__info">
