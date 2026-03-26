@@ -88,7 +88,11 @@
 		}
 
 		.featured-blog-card__read-more {
-			transform: translateX(var(--spacing-xs));
+			opacity: 0.7;
+
+			svg {
+				transform: translateX(4px);
+			}
 		}
 	}
 }
@@ -100,5 +104,9 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
-	transition: transform 0.3s;
+	transition: var(--transition-base);
+
+	svg {
+		transition: var(--transition-transform);
+	}
 }
