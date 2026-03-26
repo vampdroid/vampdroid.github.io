@@ -11,6 +11,7 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
     site: 'https://yashkukreja.com',
     prefetch: true,
+    output: 'server',
     integrations: [mdx(), sitemap(), react(), icon()],
     adapter: cloudflare()
 });
