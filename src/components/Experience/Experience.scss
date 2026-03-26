@@ -98,15 +98,19 @@
 		font-weight: var(--font-weight-bold);
 		color: var(--color-primary);
 		text-decoration: none;
-		transition: opacity 0.2s ease;
+		transition: var(--transition-base);
 
 		&:hover {
-			opacity: 0.8;
-			text-decoration: underline;
+			opacity: 0.7;
+
+			.experience__link-icon {
+				transform: translateX(4px);
+			}
 		}
 	}
 
 	&__link-icon {
 		font-size: var(--font-size-xs);
+		transition: var(--transition-transform);
 	}
 }

@@ -14,6 +14,11 @@ const navItems = [
 	{ title: "Projects", path: "/projects", icon: "fa-folder", type: "solid" },
 	{ title: "Career Timeline", path: "/career-timeline", icon: "fa-briefcase", type: "solid" },
 ];
+
+const isItemActive = (path: string) => {
+	if (path === "/") return pathname === "/" || pathname === "";
+	return pathname === path || pathname === path + "/" || pathname.startsWith(path + "/");
+};
 ---
 
 <aside class="sidebar-wrapper">
@@ -32,15 +37,17 @@ const navItems = [
 
 	{/* Desktop Navigation */}
 	<nav class="card sidebar-nav">
-		{navItems.map(item => {
-			const isActive = pathname === item.path || pathname === item.path + '/';
-			return (
-				<a href={item.path} class={`sidebar-nav__link ${isActive ? 'sidebar-nav__link--active' : ''}`}>
-					<Icon name={`fa6-${item.type}:${item.icon.replace('fa-', '')}`} class="sidebar-nav__icon" />
-					<span class="sidebar-nav__text">{item.title}</span>
-				</a>
-			);
-		})}
+		{
+			navItems.map((item) => {
+				const isActive = isItemActive(item.path);
+				return (
+					<a href={item.path} class={`sidebar-nav__link ${isActive ? "sidebar-nav__link--active" : ""}`}>
+						<Icon name={`fa6-${item.type}:${item.icon.replace("fa-", "")}`} class="sidebar-nav__icon" />
+						<span class="sidebar-nav__text">{item.title}</span>
+					</a>
+				);
+			})
+		}
 	</nav>
 
 	{/* Mobile Navigation */}
@@ -48,14 +55,18 @@ const navItems = [
 		<a href="/" class="sidebar-mobile-nav__back">
 			<Icon name="fa6-solid:arrow-left" /> Home
 		</a>
-		{navItems.filter(i => i.path !== "/").map(item => {
-			const isActive = pathname === item.path || pathname === item.path + '/';
-			return (
-				<a href={item.path} class={`sidebar-mobile-nav__item ${isActive ? 'sidebar-mobile-nav__item--active' : ''}`}>
-					{item.title}
-				</a>
-			);
-		})}
+		{
+			navItems
+				.filter((i) => i.path !== "/")
+				.map((item) => {
+					const isActive = isItemActive(item.path);
+					return (
+						<a href={item.path} class={`sidebar-mobile-nav__item ${isActive ? "sidebar-mobile-nav__item--active" : ""}`}>
+							{item.title}
+						</a>
+					);
+				})
+		}
 	</div>
 
 	{/* Theme Switcher inside sidebar for desktop */}
@@ -69,16 +80,22 @@ const navItems = [
 </aside>
 
 <script>
-	document.addEventListener('astro:page-load', () => {
-		const sidebarThemeToggleButton = document.querySelector('.sidebar-theme__btn--toggle');
+	document.addEventListener("astro:page-load", () => {
+		const sidebarThemeToggleButton = document.querySelector(".sidebar-theme__btn--toggle");
 
 		if (sidebarThemeToggleButton) {
-			sidebarThemeToggleButton.addEventListener('click', () => {
-				document.documentElement.classList.toggle('dark');
+			sidebarThemeToggleButton.addEventListener("click", () => {
+				document.documentElement.classList.toggle("dark");
 
-				const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-				localStorage.setItem('theme', currentTheme);
+				const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+				localStorage.setItem("theme", currentTheme);
 			});
+		}
+
+		// Scroll the active mobile nav item into view at the start of the viewport
+		const activeMobileItem = document.querySelector(".sidebar-mobile-nav__item--active");
+		if (activeMobileItem) {
+			activeMobileItem.scrollIntoView({ behavior: "auto", inline: "start", block: "nearest" });
 		}
 	});
 </script>

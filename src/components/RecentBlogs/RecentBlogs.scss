@@ -15,8 +15,12 @@
 				color: var(--color-primary);
 			}
 
-			.recent-blogs__icon-arrow {
-				transform: translateX(4px);
+			.recent-blogs__read-more {
+				opacity: 0.7;
+
+				.recent-blogs__icon-arrow {
+					transform: translateX(4px);
+				}
 			}
 		}
 	}
@@ -54,15 +58,16 @@
 
 	&__read-more {
 		margin-top: auto;
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		font-size: 12px;
 		font-weight: 500;
 		color: var(--color-primary);
+		transition: var(--transition-base);
 	}
 
 	&__icon-arrow {
 		margin-left: 8px;
-		transition: transform 0.3s;
+		transition: var(--transition-transform);
 	}
 }
